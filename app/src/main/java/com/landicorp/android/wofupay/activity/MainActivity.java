@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
-        Toast.makeText(context,"Hello, Im is home page!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"Hello, I'm home page!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"Hello, Nice to meet you!",Toast.LENGTH_SHORT).show();
     }
 }
