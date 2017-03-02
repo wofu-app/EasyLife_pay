@@ -25,6 +25,8 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < 100; i++) {
             list.add("a"+i);
         }
+        ArrayList<Integer> list1 = new ArrayList<>();
+        list1.add(1);
     }
 
     private void initView() {
