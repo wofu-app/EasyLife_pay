@@ -1,10 +1,31 @@
 package com.landicorp.android.wofupay.base;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.landicorp.android.wofupay.R;
+import com.landicorp.android.wofupay.model.FunctionBean;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class BaseApplication extends Application {
+    private static Context context;
+    public static List<?> images = new ArrayList<>();
+
+    public Map<Integer, FunctionBean.DataBean> functions = null;
 
     private static BaseApplication mApplication;
+
+    /**
+     * 获取上下文
+     * @return
+     */
+    public static Context getContext(){
+        return context;
+    }
 
     public synchronized static BaseApplication getInstance() {
         return mApplication;
@@ -13,7 +34,20 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
         mApplication = this;
+
+        String[] urls = getResources().getStringArray(R.array.url);
+        List list = Arrays.asList(urls);
+        images = new ArrayList(list);
+    }
+
+    public void setFunction(Map<Integer, FunctionBean.DataBean> map){
+        functions = map;
+    }
+
+    public Map<Integer, FunctionBean.DataBean> getFunction(){
+        return functions;
     }
 
 }

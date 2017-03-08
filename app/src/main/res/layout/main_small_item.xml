@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bt_busquery"
+    style="@style/bt_main"
+    android:background="#20bbeb"
+    android:src="@mipmap/yecx" >
+
+</ImageButton>
