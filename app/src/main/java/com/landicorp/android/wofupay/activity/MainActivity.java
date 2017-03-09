@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -56,6 +58,11 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
             public void onClick(View v) {
                 mParentLy.setVisibility(View.VISIBLE);
                 mainUI_btn.setVisibility(View.GONE);
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f, 0.0f, 1.0f,Animation.RELATIVE_TO_SELF,0.66f,Animation.RELATIVE_TO_SELF,0.66f);
+                scaleAnimation.setDuration(1000);
+                scaleAnimation.setFillAfter(true);
+
+                mBanner.startAnimation(scaleAnimation);
             }
         });
 

@@ -15,12 +15,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.landicorp.android.wofupay.common.AppManager;
+import com.landicorp.android.wofupay.widget.TimeoutShow;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
 	private int screenwidth;
 	private int screenHeight;
-
+	private TimeoutShow timeoutShow;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +32,33 @@ public abstract class BaseActivity extends AppCompatActivity {
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenwidth = dm.widthPixels;
 		screenHeight = dm.heightPixels;
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (timeoutShow != null) {
+			timeoutShow.closeTimer();
+			timeoutShow = null;
+		}
+		timeoutShow = new TimeoutShow(this);
+		timeoutShow.startTimer();
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (timeoutShow != null) {
+			timeoutShow.closeTimer();
+			timeoutShow = null;
+		}
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (timeoutShow != null) {
+			timeoutShow.closeTimer();
+			timeoutShow = null;
+		}
 	}
 
 	/** 获取屏幕的宽度*/
@@ -61,6 +89,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 				}
 			}
+			if (ev.getAction() == MotionEvent.ACTION_DOWN
+					|| ev.getAction() == MotionEvent.ACTION_UP
+					|| ev.getAction() == MotionEvent.ACTION_MOVE) {
+				timeoutShow.resetTimer();
+			}
 			return super.dispatchTouchEvent(ev);
 		}
 		// 必不可少，否则所有的组件都不会有TouchEvent了
@@ -68,6 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 			return true;
 		}
 		return onTouchEvent(ev);
+
 	}
 
 	private boolean isShouldHideInput(View v, MotionEvent event) {
@@ -94,8 +128,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		timeoutShow.resetTimer();
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 			finishMine();
+
+		if (keyCode == KeyEvent.KEYCODE_HOME) {
+
+			return true;
+		}
+
 		return super.onKeyDown(keyCode, event);
 	}
 

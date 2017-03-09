@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.id.list;
+
 public class BaseApplication extends Application {
     private static Context context;
     public static List<?> images = new ArrayList<>();
@@ -37,7 +39,8 @@ public class BaseApplication extends Application {
         context = this;
         mApplication = this;
 
-        String[] urls = getResources().getStringArray(R.array.url);
+     //   String[] urls = getResources().getStringArray(R.array.url);
+        Integer [] urls = {R.mipmap.picture1,R.mipmap.picture2,R.mipmap.picture3,R.mipmap.picture4,R.mipmap.picture5,R.mipmap.picture6,R.mipmap.picture7};
         List list = Arrays.asList(urls);
         images = new ArrayList(list);
     }
