@@ -19,5 +19,12 @@
         <item name="android:scaleType">fitCenter</item>
         <item name="android:textColor">#fff</item>
     </style>
-
+    <!-- 继续按钮样式 -->
+    <style name="continue_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/selector_background_ack</item>
+        <item name="android:gravity">center</item>
+        <item name="android:src">@mipmap/go_continue</item>
+    </style>
 </resources>
