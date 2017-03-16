@@ -158,11 +158,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"点击了公交卡充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.phone:
+                getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.game:
                 getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
 
         }
     }
