@@ -52,7 +52,7 @@ public class TimeoutShow implements View.OnClickListener {
                 alertDialog.dismiss();
 
                // AppUtils.jumpToMain(activity);
-                //图片变大
+               // 图片变大
 
             }
         }

@@ -18,10 +18,10 @@ public class CustomLinerLayout extends LinearLayout  {
 	private int width;
 
 	// 横向间隔
-	private int HorizontalDistance = ScreenUtils.dp2px(getContext(), 8);
+	private int HorizontalDistance = ScreenUtils.px2dp(getContext(), 20);
 
 	// 纵向间隔
-	private int VerticalDistance = ScreenUtils.dp2px(getContext(), 14);
+	private int VerticalDistance = ScreenUtils.px2dp(getContext(), 16);
 
 	public CustomLinerLayout(Context context) {
 		this(context, null);

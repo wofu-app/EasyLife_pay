@@ -53,12 +53,14 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
         mCusLy = (CustomLinerLayout) findViewById(R.id.mainUI_cusLy);
 
         mainUI_btn = (Button) findViewById(R.id.mainUI_btn);
+        mainUI_btn.setText("宽："+getSreenWidth()+","+"高："+getSreenHeight());
+
         mainUI_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mParentLy.setVisibility(View.VISIBLE);
                 mainUI_btn.setVisibility(View.GONE);
-                ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f, 0.0f, 1.0f,Animation.RELATIVE_TO_SELF,0.66f,Animation.RELATIVE_TO_SELF,0.66f);
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f, 0.0f, 1.0f,Animation.RELATIVE_TO_SELF,0.6f,Animation.RELATIVE_TO_SELF,0.6f);
                 scaleAnimation.setDuration(1000);
                 scaleAnimation.setFillAfter(true);
 
