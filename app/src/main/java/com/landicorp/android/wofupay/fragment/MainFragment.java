@@ -2,7 +2,6 @@ package com.landicorp.android.wofupay.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +29,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             R.mipmap.phone, R.mipmap.caipiao, R.mipmap.game,
             R.mipmap.zhunong, R.mipmap.water,R.mipmap.train_name,
             R.mipmap.wofu_bank, R.mipmap.gongyi,R.mipmap.market,};
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
-        mCusLy = (CustomLinerLayout) view.findViewById(R.id.mainUI_cusLy);
+        mCusLy = (CustomLinerLayout) view.findViewById(R.id.mainFragUI_cusLy);
         return view;
     }
 
@@ -152,21 +151,18 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Class<?> c = null;
         int tag = (Integer) v.getTag();
-        int id = -1;
-
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-                id = 1;
-                c = null;
                 Toast.makeText(getContext(),"点击了公交卡充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.phone:
-                id = 6;
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
+            case R.mipmap.game:
+                getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+                Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
 
         }
     }
