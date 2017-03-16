@@ -30,11 +30,13 @@
             android:background="@mipmap/bg_main"
             android:orientation="horizontal">
 
-            <com.landicorp.android.wofupay.widget.CustomLinerLayout
-                android:id="@+id/mainUI_cusLy"
+            <FrameLayout
+                android:id="@+id/fl_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="40px" />
+
+                android:background="@android:color/white" >
+            </FrameLayout>
 
         </LinearLayout>
     </LinearLayout>

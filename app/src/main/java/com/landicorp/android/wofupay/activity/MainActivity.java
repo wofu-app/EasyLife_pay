@@ -3,6 +3,9 @@ package com.landicorp.android.wofupay.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.base.BaseActivity;
 import com.landicorp.android.wofupay.base.BaseApplication;
+import com.landicorp.android.wofupay.fragment.MainFragment;
 import com.landicorp.android.wofupay.loader.GlideImageLoader;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
@@ -30,7 +34,7 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
     private Banner mBanner;
 
     private LinearLayout mParentLy;
-    private CustomLinerLayout mCusLy;
+  //  private CustomLinerLayout mCusLy;
     private Button mainUI_btn;
 
     private List<Integer> functions;
@@ -39,18 +43,35 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
             R.mipmap.phone, R.mipmap.caipiao, R.mipmap.game,
             R.mipmap.zhunong, R.mipmap.water,R.mipmap.train_name,
             R.mipmap.wofu_bank, R.mipmap.gongyi,R.mipmap.market,};
+    private FragmentManager mSupportFragmentManager;
+    private MainFragment mMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
+        mSupportFragmentManager = getSupportFragmentManager();
+        initFragment();
+        changeFragment(mMainFragment);
+    }
+
+    private void changeFragment(MainFragment mainFragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_content,mainFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void initFragment() {
+        mMainFragment = new MainFragment();
     }
 
     private void initView() {
 
         mParentLy = (LinearLayout) findViewById(R.id.mainUI_parentLy);
-        mCusLy = (CustomLinerLayout) findViewById(R.id.mainUI_cusLy);
+     //   mCusLy = (CustomLinerLayout) findViewById(R.id.mainUI_cusLy);
 
         mainUI_btn = (Button) findViewById(R.id.mainUI_btn);
         mainUI_btn.setText("宽："+getSreenWidth()+","+"高："+getSreenHeight());
@@ -78,28 +99,28 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
     @Override
     protected void onResume() {
         super.onResume();
-        showView(getDatas());
+       // showView(getDatas());
     }
 
-    public void showView(List<Integer> ids) {
-        mCusLy.removeAllViews();
-        for (int i = 0; i < ids.size(); i++) {
-            ImageButton imageButton = null;
-            Integer id = ids.get(i);
-            if (id == R.mipmap.buscard) {
-                imageButton = (ImageButton) getLayoutInflater().inflate(
-                        R.layout.main_big_item, mCusLy, false);
-            } else {
-                imageButton = (ImageButton) getLayoutInflater().inflate(
-                        R.layout.main_small_item, mCusLy, false);
-            }
-            imageButton.setImageResource(id);
-            imageButton.setTag(id);
-            imageButton.setOnClickListener(this);
-            mCusLy.addChild(imageButton);
-        }
-
-    }
+//    public void showView(List<Integer> ids) {
+//        mCusLy.removeAllViews();
+//        for (int i = 0; i < ids.size(); i++) {
+//            ImageButton imageButton = null;
+//            Integer id = ids.get(i);
+//            if (id == R.mipmap.buscard) {
+//                imageButton = (ImageButton) getLayoutInflater().inflate(
+//                        R.layout.main_big_item, mCusLy, false);
+//            } else {
+//                imageButton = (ImageButton) getLayoutInflater().inflate(
+//                        R.layout.main_small_item, mCusLy, false);
+//            }
+//            imageButton.setImageResource(id);
+//            imageButton.setTag(id);
+//            imageButton.setOnClickListener(this);
+//            mCusLy.addChild(imageButton);
+//        }
+//
+//    }
 
     public List<Integer> getDatas() {
 
@@ -204,8 +225,30 @@ public class MainActivity extends BaseActivity implements OnBannerListener, View
             case R.mipmap.buscard:
                 id = 1;
                 c = null;
+                Toast.makeText(this,"点击了公交卡充值",Toast.LENGTH_SHORT).show();
+                break;
+            case R.mipmap.phone:
+                id = 6;
+                Toast.makeText(this,"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
 
         }
+    }
+    /**
+     * 添加Fragment到回退栈
+     *
+     * @param fragment
+     */
+    public void addToBackStack(Fragment fragment) {
+        FragmentTransaction transaction = mSupportFragmentManager.beginTransaction();
+        transaction.replace(R.id.fl_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        addToBackStack(mMainFragment);
     }
 }
