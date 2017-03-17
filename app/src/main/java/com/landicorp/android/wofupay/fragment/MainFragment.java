@@ -2,15 +2,14 @@ package com.landicorp.android.wofupay.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.github.ikidou.fragmentBackHandler.BackHandledFragment;
 import com.landicorp.android.wofupay.R;
-import com.landicorp.android.wofupay.activity.MainActivity;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
@@ -23,7 +22,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/16.
  */
 
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class MainFragment extends BackHandledFragment implements View.OnClickListener {
     private List<Integer> functions;
     private CustomLinerLayout mCusLy;
     private int[] ids = { R.mipmap.buscard, R.mipmap.yecx, R.mipmap.gay,
@@ -149,25 +148,21 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     @Override
     public void onClick(View v) {
         int tag = (Integer) v.getTag();
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
+                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了公交卡充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.phone:
-                getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
-
+                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
-               // getActivity().getSupportFragmentManager().popBackStack();
-                MainActivity mMainActivity = (MainActivity) getActivity();
-                mMainActivity.addToBackStack(this);
                 break;
             case R.mipmap.game:
-                getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
             default:
@@ -175,4 +170,5 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         }
     }
+
 }

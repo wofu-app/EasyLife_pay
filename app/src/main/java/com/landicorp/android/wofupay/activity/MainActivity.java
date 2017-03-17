@@ -2,7 +2,7 @@ package com.landicorp.android.wofupay.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -12,21 +12,20 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.github.ikidou.fragmentBackHandler.BackHandlerHelper;
 import com.landicorp.android.wofupay.R;
-import com.landicorp.android.wofupay.base.BaseActivity;
 import com.landicorp.android.wofupay.base.BaseApplication;
 import com.landicorp.android.wofupay.fragment.MainFragment;
 import com.landicorp.android.wofupay.loader.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
-public class MainActivity extends BaseActivity implements OnBannerListener {
+public class MainActivity extends FragmentActivity implements OnBannerListener{
     private Context context = this;
     private Banner mBanner;
     private FrameLayout mParentLy;
     private Button mainUI_btn;
 
-    private FragmentManager mSupportFragmentManager;
     private MainFragment mMainFragment;
 
     @Override
@@ -35,7 +34,6 @@ public class MainActivity extends BaseActivity implements OnBannerListener {
         setContentView(R.layout.activity_main);
 
         initView();
-        mSupportFragmentManager = getSupportFragmentManager();
         initFragment();
         changeFragment(mMainFragment);
     }
@@ -44,6 +42,7 @@ public class MainActivity extends BaseActivity implements OnBannerListener {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fl_content,mainFragment);
+        fragmentTransaction.addToBackStack("tag");
         fragmentTransaction.commit();
     }
 
@@ -55,7 +54,7 @@ public class MainActivity extends BaseActivity implements OnBannerListener {
         mParentLy = (FrameLayout) findViewById(R.id.fl_content);
 
         mainUI_btn = (Button) findViewById(R.id.mainUI_btn);
-        mainUI_btn.setText("宽："+getSreenWidth()+","+"高："+getSreenHeight());
+//        mainUI_btn.setText("宽："+getSreenWidth()+","+"高："+getSreenHeight());
 
         mainUI_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,21 +81,11 @@ public class MainActivity extends BaseActivity implements OnBannerListener {
         Toast.makeText(getApplicationContext(),"你点击了："+position,Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * 添加Fragment到回退栈
-     *
-     * @param fragment
-     */
-    public void addToBackStack(Fragment fragment) {
-        FragmentTransaction transaction = mSupportFragmentManager.beginTransaction();
-        transaction.replace(R.id.fl_content, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
+        if (!BackHandlerHelper.handleBackPress(this)) {
+            super.onBackPressed();
+        }
     }
+
 }
