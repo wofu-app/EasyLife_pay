@@ -23,10 +23,13 @@ import com.landicorp.android.wofupay.model.FunctionBean;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ping on 2016/4/29.
@@ -180,5 +183,44 @@ public class AppUtils {
 			msg = function.get(id).getMsg();
 		}
 		return msg;
+	}
+	/**
+	 * 格式化手机号
+	 *
+	 * @param phone
+	 * @return
+	 */
+	public static String formatPhone(String phone) {
+		String result = phone;
+		StringWriter sw = new StringWriter();
+		char[] charArray = phone.toCharArray();
+		for (int i = 0; i < charArray.length; i++) {
+			sw.append(charArray[i]);
+			if (i == 2 || i == 6) {
+				sw.append("-");
+			}
+		}
+		result = sw.toString();
+		return result;
+	}
+	/**
+	 * 判断是否为手机
+	 * 移动号段：134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,
+	 * 187,188,147,178,1705
+	 *
+	 * 联通号段: 130,131,132,155,156,185,186,145,176,1709
+	 *
+	 * 电信号段:133,153,180,181,189,177,1700
+	 *
+	 * @param phone
+	 * @return
+	 */
+	public static boolean isPhoneNumber(String phone) {
+		if (phone == null)
+			return false;
+		String str = "^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|70)\\d{8}$";
+		Pattern p = Pattern.compile(str);
+		Matcher m = p.matcher(phone);
+		return m.matches();
 	}
 }

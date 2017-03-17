@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.landicorp.android.wofupay.R;
+import com.landicorp.android.wofupay.activity.MainActivity;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
@@ -159,7 +160,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.mipmap.phone:
                 getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
+
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
+               // getActivity().getSupportFragmentManager().popBackStack();
+                MainActivity mMainActivity = (MainActivity) getActivity();
+                mMainActivity.addToBackStack(this);
                 break;
             case R.mipmap.game:
                 getChildFragmentManager().beginTransaction().replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();

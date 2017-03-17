@@ -97,6 +97,6 @@ public class MainActivity extends BaseActivity implements OnBannerListener {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        addToBackStack(mMainFragment);
+
     }
 }

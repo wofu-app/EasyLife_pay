@@ -4,5 +4,70 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <!-- 灰色 -->
+
+    <color name="bg">#e0f2ff</color>
+    <color name="common_white">#FFFFFF</color>
+    <color name="common_black">#000000</color>
+    <color name="input_label_hover">#12CAFF</color>
+    <color name="input_label_normal">#00437E</color>
+    <color name="search_item_special">#56D4D4</color>
+    <color name="search_item_bg">#565555</color>
+    <color name="input_llabel_normal">#000000</color>
+    <color name="input_edit_normal">#0087FF</color>
+    <color name="button_text_color">#012a59</color>
+    <color name="div_line_color">#CCCCCC</color>
+    <color name="container_bg">#EEEEEE</color>
+    <color name="light_black">#333333</color>
+    <color name="splash_version">#017CC2</color>
+    <color name="transparent_background">#50000000</color>
+    <color name="all_transparent_background">#0000</color>
+
+    <!-- 白色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="tran">#FFFFFF</color>
+    <!-- 灰色 -->
     <color name="grey">#808080</color>
+    <!-- 黄色 -->
+    <color name="snow">#fffafa</color>
+    <!-- 海军色 -->
+    <color name="black">#000000</color>
+    <color name="csy_bg_body">#ffe9e9e9</color>
+    <color name="csy_row_on">#fff0f0f0</color>
+    <color name="csy_border">#ffd0d0d0</color>
+    <color name="csy_green">#ff3caa0f</color>
+    <color name="csy_green_on">#ff28780a</color>
+    <color name="csy_blue">#ff0a7dd2</color>
+    <color name="csy_blue_on">#ff0a64aa</color>
+    <color name="csy_label">#ff969696</color>
+    <color name="csy_text">#ff555555</color>
+    <color name="csy_hint">#ffc6c6c6</color>
+    <color name="ticks_hui">#949495</color>
+    <color name="blue">#0000ff</color>
+    <color name="green">#008000</color>
+    <color name="red">#ff0000</color>
+    <color name="caldroid_sky_blue">#FFA3E8F7</color>
+    <color name="caldroid_holo_blue_light">#ff33b5e5</color>
+    <color name="caldroid_white">#FFFFFF</color>
+    <color name="caldroid_lighter_gray">#ddd</color>
+    <color name="bkcolor">#ffF0F0F0</color>
+    <color name = "train_have">#55FF2A</color>
+    <color name = "btn_yuding">#208FFF</color>
+    <color name = "train_seat">#288BCC</color>
+    <color name = "train_bg">#76787A</color>
+    <color name="caldroid_darker_gray">#aaa</color>
+    <color name="f_text_backcolor">#2d9fe8</color>
+
+    <!-- 商城 -->
+    <color name="shop_info_bg">#cdcdcd</color>
+    <color name="gray_line">#c7c7c7</color>
+    <color name="gray_line_alpha">#33c7c7c7</color>
+    <!--一级文字色-->
+    <color name="txt_c1">#333333</color>
+    <!--二级文字色-->
+    <color name="txt_c2">#666666</color>
+    <!--三级文字色-->
+    <color name="txt_c3">#999999</color>
+    <color name="bg_light_gray">#F2F2F2</color>
+    <color name="red_base">#FB5B81</color>
+    <color name="gray_base">#343F4E</color>
 </resources>

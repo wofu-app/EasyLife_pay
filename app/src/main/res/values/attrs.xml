@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InputView">
+        <attr name="label" format="string" />
+        <attr name="special" format="boolean" />
+        <attr name="refrence" format="boolean" />
+        <attr name="editType" format="string"></attr>
+    </declare-styleable>
+    <declare-styleable name="TipView">
+        <attr name="fee" format="string" />
+        <attr name="type">
+            <enum name="input" value="0" />
+            <enum name="confirm" value="1" />
+            <enum name="card" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="gifView">
+
+        <!-- 图片来源 -->
+        <attr name="src" format="integer" />
+
+        <!-- 播放延迟 -->
+        <attr name="delay" format="integer" />
+
+        <!-- 设置是否停止 -->
+        <attr name="stop" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LInputView">
+        <attr name="llabel" format="string" />
+    </declare-styleable>
+
+
+    <!--   自定义RadioGroup -->
+    <declare-styleable name="MultiLineRadioGroup">
+        <attr name="child_margin_horizontal" format="dimension" />
+        <attr name="child_margin_vertical" format="dimension" />
+        <attr name="child_layout" format="integer" />
+        <attr name="child_count" format="integer" />
+        <attr name="child_values" format="integer" />
+        <attr name="single_choice" format="boolean" />
+        <attr name="gravity" format="integer" />
+    </declare-styleable>
+
+    <!--  自定义条形进度条 -->
+    <declare-styleable name="HorizontalProgress">
+        <attr name="progress_unreached_color" format="color"></attr>
+        <attr name="progress_reached_color" format="color"></attr>
+        <attr name="progress_text_color" format="color"></attr>
+        <attr name="progress_height" format="dimension"></attr>
+        <attr name="progress_text_size" format="dimension"></attr>
+        <attr name="progress_text_offset" format="dimension"></attr>
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+    <!--   自定义圆形进度条 -->
+    <declare-styleable name="RoundProgressBarWidthNumber" >
+        <attr name="RoundProgressBarWidthNumber_radius" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="customProgress" >
+        <attr name="custom_color" format="color"/>
+        <attr name="custom_bg" format="reference"/>
+        <attr name="custom_front" format="reference"/>
+        <attr name="custom_max" format="integer"/>
+        <attr name="custom_progress" format="integer"/>
+        <attr name="custom_textsize" format="dimension"/>
+        <attr name="custom_textcolor" format="color"/>
+        <attr name="custom_loop" format="boolean"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="NumberPicker">
+        <attr name="normalTextColor" format="color" />
+        <attr name="normalTextSize" format="dimension" />
+        <attr name="selecredTextColor" format="color" />
+        <attr name="selecredTextSize" format="dimension" />
+        <attr name="unitHight" format="dimension" />
+        <attr name="itemNumber" format="integer"/>
+        <attr name="lineColor" format="color" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="maskHight" format="dimension"/>
+        <attr name="noEmpty" format="boolean"/>
+        <attr name="isEnable" format="boolean"/>
+    </declare-styleable>
+</resources>
