@@ -1,21 +1,11 @@
 package com.landicorp.android.wofupay.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningTaskInfo;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
+
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.landicorp.android.eptapi.DeviceService;
-import com.landicorp.android.finance.app.FinanceApplication;
-import com.landicorp.android.finance.transaction.DefaultTransactionContext;
-import com.landicorp.android.finance.transaction.Transaction;
-import com.landicorp.android.finance.transaction.Transaction.OnTransactionFinishListener;
-import com.landicorp.android.wofupay.activity.MainActivity;
+
 import com.landicorp.android.wofupay.base.BaseApplication;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
@@ -24,7 +14,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringWriter;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -222,5 +215,124 @@ public class AppUtils {
 		Pattern p = Pattern.compile(str);
 		Matcher m = p.matcher(phone);
 		return m.matches();
+	}
+	/**
+	 * 判断手机号类型 移动号段:
+	 * 134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,
+	 * 187,188,147,178,1705 联通号段: 130,131,132,155,156,185,186,145,176,1709 电信号段:
+	 * 133,153,180,181,189,177,1700
+	 *
+	 * @param phone
+	 * @return 0移动 1联通 2电信 3为虚拟号段 否则为其他号码
+	 */
+	public static int PhoneNumberType(String phone) {
+
+		int type = -1;
+
+		// 移动
+		String CMCC = "(^1(3[4-9]|4[7]|5[0-27-9]|7[8]|8[2-478])\\d{8}$)";
+		// 联通
+		String WCDMA = "(^1(3[0-2]|4[5]|5[56]|7[6]|8[56])\\d{8}$)";
+		// 电信
+		String CTWAP = "(^1(33|53|77|8[019])\\d{8}$)";
+
+		String XU = "(^170\\d{8}$)";
+
+		// 移动
+		Pattern p1 = Pattern.compile(CMCC);
+		Matcher m1 = p1.matcher(phone);
+
+		// 联通
+		Pattern p2 = Pattern.compile(WCDMA);
+		Matcher m2 = p2.matcher(phone);
+
+		// 电信
+		Pattern p3 = Pattern.compile(CTWAP);
+		Matcher m3 = p3.matcher(phone);
+
+		// 虚拟号段
+		Pattern p4 = Pattern.compile(XU);
+		Matcher m4 = p4.matcher(phone);
+
+		// 移动
+		if (m1.matches()) {
+			type = 0;
+			// 联通
+		} else if (m2.matches()) {
+			type = 1;
+			// 电信
+		} else if (m3.matches()) {
+			type = 2;
+			// 虚拟号段
+		} else if (m4.matches()) {
+			type = 3;
+
+			// 未知号码
+		} else {
+			type = 4;
+		}
+
+		return type;
+	}
+	/**
+	 * 获取当前时间
+	 *
+	 * @param type
+	 *            时间格式化的格式
+	 * @return 格式化的字符串
+	 */
+	public static String getStringDate(String type) {
+		Date currentTime = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat(type);
+		String dateString = formatter.format(currentTime);
+		return dateString;
+	}
+	/**
+	 * 描述：MD5加密.
+	 *
+	 * @param str
+	 *            要加密的字符串
+	 */
+	public final static String MD5(String str) {
+		char hexDigits[] = { // 用来将字节转换成 16 进制表示的字符
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+				'e', 'f' };
+		try {
+			byte[] strTemp = str.getBytes("utf-8");
+			MessageDigest mdTemp = MessageDigest.getInstance("MD5");
+			mdTemp.update(strTemp);
+			byte tmp[] = mdTemp.digest(); // MD5 的计算结果是一个 128 位的长整数，
+			// 用字节表示就是 16 个字节
+			char strs[] = new char[16 * 2]; // 每个字节用 16 进制表示的话，使用两个字符，
+			// 所以表示成 16 进制需要 32 个字符
+			int k = 0; // 表示转换结果中对应的字符位置
+			for (int i = 0; i < 16; i++) { // 从第一个字节开始，对 MD5 的每一个字节
+				// 转换成 16 进制字符的转换
+				byte byte0 = tmp[i]; // 取第 i 个字节
+				strs[k++] = hexDigits[byte0 >>> 4 & 0xf]; // 取字节中高 4 位的数字转换,
+				// >>> 为逻辑右移，将符号位一起右移
+				strs[k++] = hexDigits[byte0 & 0xf]; // 取字节中低 4 位的数字转换
+			}
+			return new String(strs).toLowerCase(); // 换后的结果转换为字符串
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	/**
+	 * 将Map集合转换成字符串
+	 *
+	 * @param params
+	 * @return
+	 */
+	public static String encodeParameters(Map<String, String> params) {
+		StringBuilder encodedParams = new StringBuilder();
+		for (Map.Entry<String, String> entry : params.entrySet()) {
+			encodedParams.append(URLEncoder.encode(entry.getKey()));
+			encodedParams.append('=');
+			// URLEncoder.encode(entry.getValue())
+			encodedParams.append(entry.getValue());
+			encodedParams.append('&');
+		}
+		return encodedParams.toString();
 	}
 }
