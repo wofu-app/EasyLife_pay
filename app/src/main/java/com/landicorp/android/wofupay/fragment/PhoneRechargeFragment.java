@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.bean.PhoneBean;
 import com.landicorp.android.wofupay.bean.Yin_FlowQueryBean;
@@ -26,6 +27,7 @@ import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.landicorp.android.wofupay.volley.VolleyHelper;
 import com.landicorp.android.wofupay.widget.MyRadioGroup;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
@@ -52,11 +54,15 @@ public class PhoneRechargeFragment extends Fragment {
 
     private PhoneBean bean;
     private Yin_FlowQueryBean flowBean;
+    private Yin_FlowQueryBean.RecordsBean mRecordsBean;
+
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_phone_rechargement, null);
         bean = new PhoneBean();
         flowBean = new Yin_FlowQueryBean();
+        mRecordsBean = new Yin_FlowQueryBean.RecordsBean();
+
         initView();
         initListener();
         return mView;
@@ -203,16 +209,36 @@ public class PhoneRechargeFragment extends Fragment {
 
             @Override
             public void onError(Throwable throwable) {
-
+                showMNO("加载失败,请重试!");
             }
 
             @Override
             public void onNext(String s) {
-
+                //得到要展示的信息
+                Gson gson = new Gson();
+                try {
+                    flowBean = gson.fromJson(s,
+                            Yin_FlowQueryBean.class);
+                    if (TextUtils.equals("0000", flowBean.getBase().getStatus())) {
+                        showMNO("请选择套餐");
+                        showFlow(flowBean.getRecords());
+                    } else {
+                        showMNO(flowBean.getBase().getMsg());
+                    }
+                } catch (Exception e) {
+                    showMNO("加载失败,请重试!");
+                }
             }
         });
     }
+    public void showFlow(List<Yin_FlowQueryBean.RecordsBean> records) {
+        if (records != null && records.size() > 0) {
+            for (int i = 0; i < records.size(); i++) {
+                myRadioGroup.append(records.get(i).getFlowNum());
+            }
+        }
 
+    }
     /**
      * 单笔流量充值查询获取签名
      */
