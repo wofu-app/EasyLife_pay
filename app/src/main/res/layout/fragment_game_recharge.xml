@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
+        android:padding="10dp"
         android:background="@mipmap/bg_explorer">
 
         <LinearLayout
@@ -34,10 +34,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@mipmap/bg_global_left_normal">
 
                 <GridView
-                    android:id="@+id/gridView"
+                    android:id="@+id/gameUI_gridView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -52,9 +53,11 @@
                 android:gravity="center_horizontal" >
 
                 <ImageButton
-                    android:id="@+id/bt_cancle"
+                    android:id="@+id/gameUI_backBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/selector_background_back"
+                    android:src="@mipmap/go_back"
                     android:contentDescription="@string/content_description"/>
             </LinearLayout>
 
@@ -62,17 +65,26 @@
 
         <LinearLayout
             android:layout_width="450px"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" >
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
 
-            <LinearLayout style="@style/contact_layout_style" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_global_phone"/>
 
             <TextView
-                android:id="@+id/tv_AD3"
-                style="@style/adv_style" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/ad"/>
 
-            <TextView style="@style/advbottom_text_style" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="120px"/>
         </LinearLayout>
 
     </RelativeLayout>

@@ -13,6 +13,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.Pos.NoActionBar" parent="android:Theme.Light">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColorPrimaryInverse">#ff0000</item>
+    </style>
+
     <style name="bt_main">
         <item name="android:layout_width">166px</item>
         <item name="android:layout_height">166px</item>

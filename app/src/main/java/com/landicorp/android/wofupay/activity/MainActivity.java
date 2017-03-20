@@ -26,35 +26,19 @@ public class MainActivity extends FragmentActivity implements OnBannerListener{
     private FrameLayout mParentLy;
     private Button mainUI_btn;
 
-    private MainFragment mMainFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initView();
-        initFragment();
-        changeFragment(mMainFragment);
-    }
 
-    private void changeFragment(MainFragment mainFragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_content,mainFragment);
-        fragmentTransaction.addToBackStack("tag");
-        fragmentTransaction.commit();
-    }
-
-    private void initFragment() {
-        mMainFragment = new MainFragment();
     }
 
     private void initView() {
+
         mParentLy = (FrameLayout) findViewById(R.id.fl_content);
 
         mainUI_btn = (Button) findViewById(R.id.mainUI_btn);
-//        mainUI_btn.setText("宽："+getSreenWidth()+","+"高："+getSreenHeight());
 
         mainUI_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +58,9 @@ public class MainActivity extends FragmentActivity implements OnBannerListener{
                 .setImageLoader(new GlideImageLoader())
                 .setOnBannerListener(this)
                 .start();
+
+        //必需继承FragmentActivity,嵌套fragment只需要这行代码
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, MainFragment.newInstance("","")).addToBackStack("tag").commit();
     }
 
     @Override

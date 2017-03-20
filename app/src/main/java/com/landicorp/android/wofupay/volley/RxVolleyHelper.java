@@ -80,8 +80,8 @@ public class RxVolleyHelper {
 				queue.add(http);
 			}
 		}).subscribeOn(AndroidSchedulers.mainThread());
-		 
-	}	
+
+	}
 	/**
 	 * 提交键值对
 	 */
@@ -113,12 +113,12 @@ public class RxVolleyHelper {
 			}
 		}).subscribeOn(AndroidSchedulers.mainThread());
 	}
-	
+
 
 
 	/**
 	 * 设置本次http请求的tag,用来取消请求的时候调用
-	 * 
+	 *
 	 * @param tag
 	 */
 	public void satTag(Object tag) {
@@ -127,17 +127,17 @@ public class RxVolleyHelper {
 
 	/**
 	 * 根据设置的tag来取消请求
-	 * 
+	 *
 	 * @param tag
 	 */
 	public void cancle(Object tag) {
 		queue.cancelAll(tag);
 
 	}
-	
+
 	/**
 	 * 设置超时时间和重试次数
-	 * 
+	 *
 	 * @param timeout
 	 *            超时时间默认60秒
 	 * @param retrytimes

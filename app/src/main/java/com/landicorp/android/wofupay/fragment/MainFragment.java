@@ -22,13 +22,41 @@ import java.util.List;
  * Created by Administrator on 2017/3/16.
  */
 
-public class MainFragment extends BackHandledFragment implements View.OnClickListener {
+public class MainFragment extends BaseFragment implements View.OnClickListener {
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
     private List<Integer> functions;
     private CustomLinerLayout mCusLy;
     private int[] ids = { R.mipmap.buscard, R.mipmap.yecx, R.mipmap.gay,
             R.mipmap.phone, R.mipmap.caipiao, R.mipmap.game,
             R.mipmap.zhunong, R.mipmap.water,R.mipmap.train_name,
             R.mipmap.wofu_bank, R.mipmap.gongyi,R.mipmap.market,};
+
+    public MainFragment() {
+    }
+
+    public static MainFragment newInstance(String param1, String param2) {
+        MainFragment fragment = new MainFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +72,6 @@ public class MainFragment extends BackHandledFragment implements View.OnClickLis
     }
 
     public List<Integer> getDatas() {
-
         FunctionBean readFromFile = AppUtils.readFromFile(FileBean.FUNCTION,
                 FileBean.FUNCTIONNANE);
         AppUtils.upFucntion(readFromFile);
@@ -154,15 +181,24 @@ public class MainFragment extends BackHandledFragment implements View.OnClickLis
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+
+                switchContent(this,GameRechargeFragment.newInstance("",""));
+
+//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了公交卡充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.phone:
-                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
+
+                switchContent(this,PhoneRechargeFragment.newInstance("",""));
+
+//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.game:
-                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+
+                switchContent(this,GameRechargeFragment.newInstance("",""));
+
+//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
             default:
