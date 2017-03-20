@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.landicorp.android.wofupay.R;
@@ -39,7 +40,7 @@ import static com.landicorp.android.wofupay.utils.AppUtils.isPhoneNumber;
  * Created by Administrator on 2017/3/16.
  */
 
-public class PhoneRechargeFragment extends Fragment {
+public class PhoneRechargeFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -95,6 +96,7 @@ public class PhoneRechargeFragment extends Fragment {
     }
 
     private void initListener() {
+        mBt_entry.setOnClickListener(this);
         mEt_phone.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -372,4 +374,57 @@ public class PhoneRechargeFragment extends Fragment {
         return;
 
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_entry:
+                getBillNo();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void getBillNo() {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("action", "GetHPBillNo");
+        params.put("rechargeAccount", bean.phoneNumber);
+        // params.put("terminalcode", DeviceUtils.getDevicePort());
+        params.put("mobile", bean.phoneNumber);
+        params.put("amount", Float.parseFloat(bean.payAmount)/100+"");
+        if (TextUtils.equals("2", bean.type)) {
+            params.put("BN_type", "phone");
+            params.put("BN_memo", "话费充值");
+
+        } else if (TextUtils.equals("1", bean.type)) {
+            params.put("BN_type", "flow");
+            params.put("BN_memo", "流量充值");
+        }
+        RxVolleyHelper helper = new RxVolleyHelper(PayContacts.URL);
+        Observable<String> observable = helper.postParams(params);
+        observable.subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                showMNO("加载失败,请重试!");
+            }
+
+            @Override
+            public void onNext(String s) {
+                PhoneBean bean =getData();
+                bean.BillNo = s;
+                bean.function = 3;
+                bean.payData = AppUtils.getStringDate("yyyyMMddHHmmss");
+                JLog.e(bean.toString());
+                Toast.makeText(getContext(),bean.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }

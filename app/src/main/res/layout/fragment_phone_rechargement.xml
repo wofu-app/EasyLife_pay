@@ -213,8 +213,7 @@
                 <ImageButton
                     android:id="@+id/bt_entry"
                     style="@style/right_button_style"
-                    android:contentDescription="@string/content_description"
-                    android:onClick="onPage1BusConfirmClick" />
+                    android:contentDescription="@string/content_description" />
             </LinearLayout>
         </LinearLayout>
 
