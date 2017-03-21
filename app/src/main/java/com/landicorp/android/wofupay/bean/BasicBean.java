@@ -32,7 +32,7 @@ public abstract class BasicBean  implements Parcelable {
      */
     public String cardId="";
 
-
+    public  String type = "" ;
     @Override
     public String toString() {
         return "BasicBean [BillNo=" + BillNo + ", payAmount=" + payAmount

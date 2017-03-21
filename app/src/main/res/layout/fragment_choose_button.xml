@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@mipmap/bg_explorer"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/bg_global_logo"
+            android:contentDescription="@string/content_description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水电煤缴费"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_choose"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:text="请选择缴费项目:"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/btn_jump_electric"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/recharge_elec" />
+
+            <RadioButton
+                android:id="@+id/btn_jump_water"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/recharge_wate"
+                />
+
+            <RadioButton
+                android:id="@+id/btn_jump_gas"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/recharge_gas"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout style="@style/button_layout_style" >
+
+        <ImageButton
+            android:id="@+id/bt_cancle"
+            style="@style/left_button_style"
+            android:contentDescription="@string/content_description"
+            android:onClick="onPage1BusExitClick" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/bt_entry"
+            style="@style/right_button_style"
+            android:contentDescription="@string/content_description"
+            android:onClick="onPage1BusConfirmClick" />
+    </LinearLayout>
+</LinearLayout>

@@ -2,10 +2,24 @@ package com.landicorp.android.wofupay.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.github.ikidou.fragmentBackHandler.BackHandlerHelper;
 import com.github.ikidou.fragmentBackHandler.FragmentBackHandler;
 import com.landicorp.android.wofupay.R;
+import com.landicorp.android.wofupay.bean.BasicBean;
+import com.landicorp.android.wofupay.bean.PhoneBean;
+import com.landicorp.android.wofupay.utils.AppUtils;
+import com.landicorp.android.wofupay.utils.JLog;
+import com.landicorp.android.wofupay.utils.PayContacts;
+import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by Administrator on 2017/3/18 0018.
@@ -51,4 +65,6 @@ public class BaseFragment extends Fragment implements FragmentBackHandler {
             }
         }
     }
-}
+
+    }
+

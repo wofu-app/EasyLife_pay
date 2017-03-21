@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@mipmap/bg_explorer"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/bg_global_logo"
+            android:contentDescription="@string/content_description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水电煤缴费"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:singleLine="true"
+                android:gravity="left"
+                android:text="@string/province" />
+
+            <Spinner
+                android:id="@+id/province_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/city_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/distince"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/distance_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+
+                      android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="left"
+                android:text="@string/account" />
+
+            <EditText
+                android:id="@+id/account"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="32dp"
+                android:singleLine="true"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="@drawable/selector_background_edit"
+                android:layout_marginLeft="5dp"
+                android:privateImeOptions="inputmode=number|x=656|y=123|width=0|height=453"
+                android:hint="@string/input_account_hint"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="left"
+                      android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="@string/phonenumber" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp"
+                android:maxLength="11"
+                android:privateImeOptions="inputmode=number|x=656|y=123|width=0|height=453"
+                android:hint="@string/input_phonenumber"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/text_layout_style" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:text="@string/pay_money" />
+
+            <EditText
+                android:privateImeOptions="inputmode=number|x=656|y=123|width=0|height=453"
+                android:id="@+id/account_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp"
+                android:hint="@string/input_money"
+                android:inputType="number" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- 确认/取消按钮 -->
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/bt_cancle"
+            style="@style/left_button_style"
+            android:contentDescription="@string/content_description"
+             />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/bt_entry"
+            style="@style/right_button_style"
+            android:contentDescription="@string/content_description"
+             />
+    </LinearLayout>
+
+</LinearLayout>

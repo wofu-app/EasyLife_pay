@@ -1,7 +1,6 @@
 package com.landicorp.android.wofupay.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -40,7 +39,7 @@ import static com.landicorp.android.wofupay.utils.AppUtils.isPhoneNumber;
  * Created by Administrator on 2017/3/16.
  */
 
-public class PhoneRechargeFragment extends Fragment implements View.OnClickListener {
+public class PhoneRechargeFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

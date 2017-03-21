@@ -185,22 +185,28 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                 switchContent(this,GameRechargeFragment.newInstance("",""));
 
 //                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
-                Toast.makeText(getContext(),"点击了公交卡充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.phone:
 
                 switchContent(this,PhoneRechargeFragment.newInstance("",""));
 
 //                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
-                Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
             case R.mipmap.game:
 
                 switchContent(this,GameRechargeFragment.newInstance("",""));
 
 //                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+
                 Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
+            case  R.mipmap.gay://油卡充值
+                switchContent(this,GasRechargeFragment.newInstance("",""));
+                break;
+            case  R.mipmap.water://水电煤选择界面
+                switchContent(this,ChooseButtonFragment.newInstance("",""));
+                break;
+            
             default:
                 break;
 
