@@ -2,7 +2,7 @@ package com.landicorp.android.wofupay.utils;
 
 /**
  * 应用配置文件信息
- * @author ping
+ * @author
  *
  */
 public class AppConfig {

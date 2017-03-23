@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@mipmap/train16"
+                  android:gravity="center_horizontal"
+                  android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@mipmap/square"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:text="出发地"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/start_city1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/replace_square"
+                android:gravity="center"
+                android:text="出发城市"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:background="@mipmap/train1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:text="目的地"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/end_city1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/replace_square"
+                android:gravity="center"
+                android:text="达到城市"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="1dp"
+                android:layout_marginLeft="5dp"
+                android:text="出发日"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/start_date1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@mipmap/train3"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="2016-11-15"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="1dp"
+
+                android:background="@drawable/btn_bg"
+                android:text="查询" />
+        </LinearLayout>
+        <!-- 日期 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="1dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_yesterday"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg_selector"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:text="前一天"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_toady"
+                android:layout_width="0dp"
+                android:textSize="10sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg_selector"
+                android:gravity="center"
+                android:text="当天"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_tomorrow"
+                android:layout_width="0dp"
+                android:textSize="10sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg_selector"
+                android:gravity="center"
+                android:text="后一天"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <!-- 筛选条件 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车次类型:"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/check_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/check_all"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="全部车次" />
+
+                <RadioButton
+                    android:id="@+id/check_G"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="GV-高铁/城际" />
+
+                <RadioButton
+                    android:id="@+id/check_D"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="D-动车" />
+
+                <RadioButton
+                    android:id="@+id/check_Z"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="Z-直达" />
+
+                <RadioButton
+                    android:id="@+id/check_T"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="T-特快" />
+
+                <RadioButton
+                    android:id="@+id/check_K"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="K-快车" />
+
+                <RadioButton
+                    android:id="@+id/check_else"
+                    android:textSize="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:text="其他" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- 车次数量 -->
+
+        <LinearLayout
+            android:id="@+id/ll_num"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!-- 车次信息 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="1dp"
+            android:background="#086EB1" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="车次"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="出发站\n到达站"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/ticket_sort_sale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="出发时间\n到达时间"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="历时"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="商务座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="特等座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="一等座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="二等座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="高级\n软卧"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="软卧"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+
+                android:text="硬卧"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+
+                android:text="软座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+
+                android:text="硬座"
+                android:textColor="@color/white"
+                android:textSize="8dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+
+                android:text="无座"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+
+                android:text="其他"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:text="备注"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <!-- </LinearLayout> -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <ListView
+                    android:id="@+id/train_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cacheColorHint="#00000000"
+                    android:fadingEdge="none"
+                    android:scrollingCache="false" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="温馨提示:车票预定时间段为每日的7:00-23:00"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bkcolor"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="数据筛选中" />
+            </LinearLayout>
+        </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layGridView"
+              android:layout_width="match_parent"
+              android:layout_height="300dp"
+              android:background="@drawable/train_city_diagl"
+              android:orientation="vertical"
+              android:padding="20dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/mudidi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入城市或拼音"
+            />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/tickets_yuding_selector"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/city_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/f_text_backcolor"
+            android:gravity="center"
+            android:padding="8dip"
+            android:text="热门城市"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/city_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@color/ticks_hui"
+            android:gravity="center"
+            android:padding="8dip"
+            android:text="搜索结果"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <GridView
+            android:id="@+id/grid_view"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:background="@color/bkcolor"
+            android:columnWidth="80dip"
+            android:horizontalSpacing="1dip"
+            android:listSelector="@drawable/y_tickets_ui_main_gridview_item_default"
+            android:minHeight="120dip"
+            android:numColumns="6"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dip" >
+        </GridView>
+
+        <LinearLayout
+            android:id="@+id/ll_pr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bkcolor"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_pro"
+                style="@style/text_layout_style"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="热门城市加载中.."
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

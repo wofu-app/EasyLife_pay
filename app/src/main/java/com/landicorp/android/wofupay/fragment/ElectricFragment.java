@@ -13,10 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.github.ikidou.fragmentBackHandler.BackHandlerHelper;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.adapter.AreaAdaptr;
 import com.landicorp.android.wofupay.bean.Areabean;
+import com.landicorp.android.wofupay.bean.ElecPayBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
+import com.landicorp.android.wofupay.utils.PayContacts;
+import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,9 +28,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import static com.landicorp.android.wofupay.R.string.phone_number;
+import rx.Observable;
+import rx.Subscriber;
+
 
 
 /**
@@ -297,9 +304,13 @@ public class ElectricFragment extends BaseFragment implements   AdapterView.OnIt
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt_cancle:
+                //隐藏当前的fragment
+                getFragmentManager().beginTransaction().hide(this).commit();
                 //进入主fragment
                 switchContent(this,MainFragment.newInstance("",""));
+
                 break;
+
             case R.id.bt_entry:
                 //获取billNo
                 getBIllNo();
@@ -323,6 +334,46 @@ public class ElectricFragment extends BaseFragment implements   AdapterView.OnIt
             mEdit_phoneNumber.setError("请输入正确手机号!");
             return;
         }
+        startGetBillNo();
+    }
+
+    private void startGetBillNo() {
+        RxVolleyHelper helper = new RxVolleyHelper(PayContacts.life_recharge);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("action", "GetBillPayNo");
+        params.put("rechargeAccount", mAccount);
+      //  params.put("terminalcode", DeviceUtils.getDevicePort());
+        params.put("mobile", mPhone_number);
+        params.put("amount", mAccount + ".0");
+        params.put("BN_type", "elec");
+        params.put("BN_memo", "电费");
+        params.put("region", provice+city);
+        params.put("org", dis);
+        Observable<String> observable = helper.postParams(params);
+        observable.subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                ElecPayBean bean = new ElecPayBean();
+                bean.BillNo = s;
+                bean.function = 6;
+                bean.payAmount = String.valueOf(Integer.parseInt(mAccount)*100);
+                bean.phoneNumber = mPhone_number;
+                bean.cardId = mAccount;
+                bean.type = "1";//电费
+                //进入支付界面
+
+            }
+        });
     }
 
     private void initBillNo() {

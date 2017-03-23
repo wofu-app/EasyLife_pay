@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/y_tickets_ui_main_gridview_item_press" android:state_pressed="true"/>
+    <item android:drawable="@drawable/y_tickets_msg_selectcity_gridview_item_default"/>
+
+</selector>

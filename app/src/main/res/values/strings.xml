@@ -104,7 +104,7 @@
     <string name="pay_amount">支付金额</string>
     <!-- 水电煤缴费 -->
     <string name="utilities_payment">水电煤缴费</string>
-    <string name="account">户\t\t\t号:</string>
+    <string name="account">户\t\t\t\t\t\t\t号:</string>
     <string name="input_account_hint">请输入您的卡号</string>
     <string name="input_confirm_account_hint">请输入您的卡号</string>
     <string name="input_phonenumber">请输入您的手机号码</string>

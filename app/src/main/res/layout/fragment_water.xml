@@ -25,12 +25,12 @@
             android:textSize="12sp"/>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
 
         <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,25 +55,7 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/distince"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/distance_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1" />
-        </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -151,14 +133,14 @@
     <!-- 确认/取消按钮 -->
 
     <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/bt_cancle"
             style="@style/left_button_style"
             android:contentDescription="@string/content_description"
-             />
+            />
 
         <TextView
             android:layout_width="0dip"
@@ -169,7 +151,7 @@
             android:id="@+id/bt_entry"
             style="@style/right_button_style"
             android:contentDescription="@string/content_description"
-             />
+            />
     </LinearLayout>
 
 </LinearLayout>

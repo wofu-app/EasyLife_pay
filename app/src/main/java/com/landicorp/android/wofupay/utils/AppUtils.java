@@ -2,10 +2,17 @@ package com.landicorp.android.wofupay.utils;
 
 import android.annotation.SuppressLint;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.base.BaseApplication;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
@@ -29,7 +36,7 @@ import java.util.regex.Pattern;
  */
 @SuppressLint("SimpleDateFormat")
 public class AppUtils {
-
+	private static Toast toastShow = null;
 	/**
 	 * 根据功能类型的id获取相应的名称
 	 * 
@@ -335,6 +342,29 @@ public class AppUtils {
 		}
 		return encodedParams.toString();
 	}
+	/**
+	 * 以toast方式显示提示信息
+	 *
+	 * @param context
+	 * @param message
+	 */
+	public static void showMessage(Context context, String message) {
+		LayoutInflater inflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View toastRoot = inflater.inflate(R.layout.lout_toast_style, null);
+		TextView textView = (TextView) toastRoot
+				.findViewById(R.id.tv_Toast_Property);
+		textView.setText(message);
 
+		if (toastShow == null) {
+			toastShow = new Toast(context);
+		} else {
+			toastShow.cancel();
+		}
+		toastShow.setDuration(Toast.LENGTH_SHORT);
+		toastShow.setGravity(Gravity.BOTTOM, 0, 10);
+		toastShow.setView(toastRoot);
+		toastShow.show();
+	}
 
 }

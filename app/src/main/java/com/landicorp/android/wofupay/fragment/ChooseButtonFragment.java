@@ -93,7 +93,13 @@ public class ChooseButtonFragment extends BaseFragment implements View.OnClickLi
                 switch (id){
                     case R.id.btn_jump_electric:
                         //进入电费充值界面
-                    switchContent(this,ElectricFragment.newInstance("",""));
+                        switchContent(this,ElectricFragment.newInstance("",""));
+                        break;
+                    case R.id.btn_jump_water:
+                        //进入水费充值界面
+                        switchContent(this,WaterFragment.newInstance("",""));
+                        break;
+                    default:
                         break;
                 }
                 break;
