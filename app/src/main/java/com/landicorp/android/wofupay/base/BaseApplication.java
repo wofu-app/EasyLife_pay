@@ -8,6 +8,8 @@ import com.android.volley.toolbox.Volley;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.model.FunctionBean;
 
+import org.litepal.LitePal;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +43,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         context = this;
         mApplication = this;
+        LitePal.initialize(context);
 
      //   String[] urls = getResources().getStringArray(R.array.url);
         Integer [] urls = {R.mipmap.picture1,R.mipmap.picture2,R.mipmap.picture3,R.mipmap.picture4,R.mipmap.picture5,R.mipmap.picture6,R.mipmap.picture7};

@@ -38,7 +38,6 @@ import static com.landicorp.android.wofupay.R.id.start_city1;
 import static com.landicorp.android.wofupay.R.id.start_date1;
 import static com.landicorp.android.wofupay.R.id.tv_tomorrow;
 import static com.landicorp.android.wofupay.R.id.tv_yesterday;
-import static com.landicorp.android.wofupay.utils.AppUtils.MD5;
 
 /**
  * Created by Administrator on 2017/3/22.
@@ -46,6 +45,7 @@ import static com.landicorp.android.wofupay.utils.AppUtils.MD5;
 
 public class TrainOneFragment extends BaseFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private List<Train_City_Bean> list = new ArrayList<Train_City_Bean>();// 车站的集合
     private View mInflate;
     private String mParam1;
     private String mParam2;
@@ -108,6 +108,8 @@ public class TrainOneFragment extends BaseFragment implements View.OnClickListen
                         if (!exist){
                             //不存在就访问网络获取信息
                             getCityData();
+                        }else {
+                            //TODO 隐藏提示框
                         }
                     }
                 });
@@ -153,12 +155,40 @@ public class TrainOneFragment extends BaseFragment implements View.OnClickListen
                 list.addAll(bean.data.list);
                 return list;
             }
-        }).flatMap(new Func1<List<DataSupport>, Observable<?>>() {
+        }).flatMap(new Func1<List<DataSupport>, Observable<? extends DataSupport>>() {
             @Override
-            public Observable<? extends  DataSupport> call(List<DataSupport> dataSupports) {
+            public Observable<? extends DataSupport> call(List<DataSupport> dataSupports) {
                 return Observable.from(dataSupports);
             }
-        }).subscribe();
+        }).subscribe(new Subscriber<DataSupport>() {
+            @Override
+            public void onStart() {
+                DataSupport.deleteAll(Train_City_Bean.class);
+                super.onStart();
+            }
+
+            @Override
+            public void onCompleted() {
+                //TODO 对话框隐藏操作
+                if (list.size()==0){
+                    Toast.makeText(getContext(),"车站信息获取失败,请重新进入",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                //TODO 对话框隐藏操作
+                Toast.makeText(getContext(),"车站信息获取失败,请重新进入",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNext(DataSupport dataSupport) {
+                list.add((Train_City_Bean) dataSupport);
+
+            }
+        });
+
     }
 
     private void initData() {

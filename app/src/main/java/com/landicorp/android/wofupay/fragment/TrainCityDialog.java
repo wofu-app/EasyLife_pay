@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.landicorp.android.eptapi.utils.Log;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.base.BaseDialog;
 import com.landicorp.android.wofupay.bean.Train_City_Bean;
@@ -33,6 +36,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static com.landicorp.android.wofupay.R.id.btn_search;
 import static com.landicorp.android.wofupay.R.id.city_one;
 import static com.landicorp.android.wofupay.R.id.city_two;
@@ -152,6 +156,7 @@ public class TrainCityDialog extends BaseDialog implements View.OnClickListener 
                     public void onCompleted() {
                         hotlist.clear();
                         hotlist.addAll(list);
+                        //Toast.makeText(getContext(),hotlist.toString()+"",Toast.LENGTH_SHORT).show();
                         mAdapter = new MainAdapter();
                         mGridview.setAdapter(mAdapter);
                         mLl.setVisibility(View.GONE);
@@ -166,6 +171,7 @@ public class TrainCityDialog extends BaseDialog implements View.OnClickListener 
                     @Override
                     public void onNext(List<Train_City_Bean> s) {
                         list.addAll(s);
+                        Toast.makeText(getContext(),list.toString()+"list的集合",Toast.LENGTH_SHORT).show();
                     }
                 });
     }
