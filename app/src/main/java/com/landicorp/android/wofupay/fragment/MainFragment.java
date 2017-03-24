@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.github.ikidou.fragmentBackHandler.BackHandledFragment;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
+import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.widget.CustomLinerLayout;
 
 import java.util.ArrayList;
@@ -95,9 +94,10 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             functions.add(id);
         }
 
-//        if (PayContacts.isDebug) {
-//            functions.add(R.drawable.violation);
-//        }
+        if (PayContacts.isDebug) {
+            functions.add(R.mipmap.violation);
+        }
+
         return functions;
     }
     /**
@@ -108,9 +108,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
      *            7.话费充值 8.流量充值 9.游戏充值 10.彩票 11福彩 12.体彩 13.助农取款 14.公益 15.水电煤
      */
     public int getFunction(int buttonID) {
-
         int id = -1;
-
         switch (buttonID) {
             // 公交卡充值
             case R.mipmap.buscard:
@@ -155,6 +153,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         }
         return id;
     }
+
     public void showView(List<Integer> ids) {
         mCusLy.removeAllViews();
         for (int i = 0; i < ids.size(); i++) {
@@ -172,7 +171,6 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             imageButton.setOnClickListener(this);
             mCusLy.addChild(imageButton);
         }
-
     }
 
     @Override
@@ -181,29 +179,18 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-
                 switchContent(this,GameRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
                 break;
             case R.mipmap.phone:
-
                 switchContent(this,PhoneRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
                 break;
             case R.mipmap.game:
-
                 switchContent(this,GameRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
-
-                Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
                 break;
-            case  R.mipmap.gay://油卡充值
+            case R.mipmap.gay://油卡充值
                 switchContent(this,GasRechargeFragment.newInstance("",""));
                 break;
-            case  R.mipmap.water://水电煤选择界面
+            case R.mipmap.water://水电煤选择界面
                 switchContent(this,ChooseButtonFragment.newInstance("",""));
                 break;
             case R.mipmap.train_name://火车票界面

@@ -170,6 +170,7 @@ public class TrainCityDialog extends BaseDialog implements View.OnClickListener 
 
                     @Override
                     public void onNext(List<Train_City_Bean> s) {
+
                         list.addAll(s);
                         Toast.makeText(getContext(),list.toString()+"list的集合",Toast.LENGTH_SHORT).show();
                     }

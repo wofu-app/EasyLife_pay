@@ -24,7 +24,7 @@ public class BaseApplication extends Application {
     public Map<Integer, FunctionBean.DataBean> functions = null;
 
     private static BaseApplication mApplication;
-    public static RequestQueue queue;;
+    public static RequestQueue queue;
 
     /**
      * 获取上下文

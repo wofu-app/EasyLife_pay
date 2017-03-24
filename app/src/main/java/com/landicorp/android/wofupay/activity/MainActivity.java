@@ -3,8 +3,6 @@ package com.landicorp.android.wofupay.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -60,7 +58,7 @@ public class MainActivity extends FragmentActivity implements OnBannerListener{
                 .start();
 
         //必需继承FragmentActivity,嵌套fragment只需要这行代码
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, MainFragment.newInstance("","")).addToBackStack("tag").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_content, MainFragment.newInstance("",""), "").addToBackStack("tag").commit();
     }
 
     @Override
