@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.bean.BasicBean;
+import com.landicorp.android.wofupay.bean.FailBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.PayContacts;
 
@@ -22,8 +23,10 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
 
     private BasicBean basicBean;
+    private FailBean failBean;
     private String payAmount;
     //支付方式
     private int payType;// 0支付宝 1微信 2银联
@@ -41,11 +44,12 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
     public PayTypeFragment() {
     }
 
-    public static PayTypeFragment newInstance(BasicBean param1, String param2) {
+    public static PayTypeFragment newInstance(BasicBean param1, FailBean param2, String param3) {
         PayTypeFragment fragment = new PayTypeFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +59,8 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             basicBean = getArguments().getParcelable(ARG_PARAM1);
-            payAmount = getArguments().getString(ARG_PARAM2);
+            failBean = getArguments().getParcelable(ARG_PARAM2);
+            payAmount = getArguments().getString(ARG_PARAM3);
         }
     }
 
@@ -67,8 +72,12 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
-        showView(basicBean.function);
+        if(failBean != null){
+            payFail();
+        }else{
+            initView(view);
+            showView(basicBean.function);
+        }
     }
 
     private void initView(View view) {
@@ -111,6 +120,35 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
 
     }
 
+    /**
+     * 支付失败
+     */
+    public void payFail() {
+
+        switch (failBean.function) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            default:
+                break;
+        }
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -139,9 +177,7 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
                 break;
             //银联支付
             case 2:
-
                 break;
-
         }
 
     }

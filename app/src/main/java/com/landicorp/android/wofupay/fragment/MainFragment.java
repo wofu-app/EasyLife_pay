@@ -196,7 +196,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             case R.mipmap.train_name://火车票界面
                 switchContent(this,TrainOneFragment.newInstance("",""));
                 break;
-            default:
+            case R.mipmap.market://商城界面
+                switchContent(this,MarketFragment.newInstance("",""));
                 break;
 
         }

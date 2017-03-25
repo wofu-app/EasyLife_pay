@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.base.BaseApplication;
+import com.landicorp.android.wofupay.bean.FailBean;
 import com.landicorp.android.wofupay.bean.GameBean;
 import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
@@ -241,7 +242,11 @@ public class GameDetailFragment extends BaseFragment implements View.OnClickList
 
             @Override
             public void onError(Throwable throwable) {
-
+                FailBean bean = new FailBean();
+                bean.errorCode="404";
+                bean.errorMsg="服务器繁忙,请求账单号未完成,请稍后再试";
+                bean.function=3;
+                jumpToFail(bean);
             }
 
             @Override
@@ -258,7 +263,11 @@ public class GameDetailFragment extends BaseFragment implements View.OnClickList
     }
 
     public void jumpToPay(GameBean gameBean, String payAmount) {
-        switchContent(this, PayTypeFragment.newInstance(gameBean, payAmount));
+        switchContent(this, PayTypeFragment.newInstance(gameBean, null, payAmount));
+    }
+
+    public void jumpToFail(FailBean failBean) {
+        switchContent(this, PayTypeFragment.newInstance(null, failBean, ""));
     }
 
     private void showPopupWindow(View v) {

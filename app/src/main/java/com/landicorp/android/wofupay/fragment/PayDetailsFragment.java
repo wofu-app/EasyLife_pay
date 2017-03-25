@@ -122,7 +122,6 @@ public class PayDetailsFragment extends BaseFragment implements View.OnClickList
     private void creatCode() {
         VolleyHelper helper = new VolleyHelper(PayContacts.weixin_url, this);
         helper.postBody(getPayString());
-
     }
 
     private String getPayString() {
@@ -238,6 +237,7 @@ public class PayDetailsFragment extends BaseFragment implements View.OnClickList
 
             @Override
             public void onNext(String s) {
+
                 Log.e("MyTest","======s======"+s);
             }
         });
