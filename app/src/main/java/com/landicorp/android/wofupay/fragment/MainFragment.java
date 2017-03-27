@@ -13,6 +13,7 @@ import com.landicorp.android.wofupay.model.FunctionBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.widget.CustomLinerLayout;
+import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/16.
  */
 
-public class MainFragment extends BaseFragment implements View.OnClickListener {
+public class MainFragment extends NoFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -179,25 +180,25 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-                switchContent(this,GameRechargeFragment.newInstance("",""));
+                startFragment(GameRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.phone:
-                switchContent(this,PhoneRechargeFragment.newInstance("",""));
+//                startFragment(PhoneRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.game:
-                switchContent(this,GameRechargeFragment.newInstance("",""));
+                startFragment(GameRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.gay://油卡充值
-                switchContent(this,GasRechargeFragment.newInstance("",""));
+//                startFragment(GasRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.water://水电煤选择界面
-                switchContent(this,ChooseButtonFragment.newInstance("",""));
+//                startFragment(ChooseButtonFragment.newInstance("",""));
                 break;
             case R.mipmap.train_name://火车票界面
-                switchContent(this,TrainOneFragment.newInstance("",""));
+//                startFragment(TrainOneFragment.newInstance("",""));
                 break;
             case R.mipmap.market://商城界面
-                switchContent(this,MarketFragment.newInstance("",""));
+                startFragment(MarketFragment.newInstance("",""));
                 break;
 
         }

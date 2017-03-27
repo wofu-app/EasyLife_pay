@@ -26,6 +26,7 @@ import com.landicorp.android.wofupay.utils.XmlUtils;
 import com.landicorp.android.wofupay.volley.CallBackListener;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.landicorp.android.wofupay.volley.VolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -36,7 +37,7 @@ import rx.functions.Func1;
  * 支付详情Fragment
  * Created by Administrator on 2017/3/23 0023.
  */
-public class PayDetailsFragment extends BaseFragment implements View.OnClickListener, CallBackListener<String> {
+public class PayDetailsFragment extends NoFragment implements View.OnClickListener, CallBackListener<String> {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -110,9 +111,9 @@ public class PayDetailsFragment extends BaseFragment implements View.OnClickList
         mOrderNum.setText(basicBean.BillNo);
         mGoodsName.setText(AppUtils.getFunctionByID(basicBean.function));
         if (TextUtils.equals(payway, PayContacts.ali_service)) {
-            mPayTitle.setBackgroundResource(R.mipmap.ali_logo);;
+            mPayTitle.setBackgroundResource(R.mipmap.ali_logo);
         }else {
-            mPayTitle.setBackgroundResource(R.mipmap.weixin_logo);;
+            mPayTitle.setBackgroundResource(R.mipmap.weixin_logo);
         }
     }
 

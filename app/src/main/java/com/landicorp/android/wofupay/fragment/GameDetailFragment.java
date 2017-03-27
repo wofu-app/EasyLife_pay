@@ -26,6 +26,7 @@ import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.utils.StringUtils;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ import rx.Subscriber;
  * 游戏充值详情页
  * Created by Administrator on 2017/3/21 0021.
  */
-public class GameDetailFragment extends BaseFragment implements View.OnClickListener {
+public class GameDetailFragment extends NoFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -263,11 +264,11 @@ public class GameDetailFragment extends BaseFragment implements View.OnClickList
     }
 
     public void jumpToPay(GameBean gameBean, String payAmount) {
-        switchContent(this, PayTypeFragment.newInstance(gameBean, null, payAmount));
+        startFragment(PayTypeFragment.newInstance(gameBean, null, payAmount));
     }
 
     public void jumpToFail(FailBean failBean) {
-        switchContent(this, PayTypeFragment.newInstance(null, failBean, ""));
+        startFragment(PayTypeFragment.newInstance(null, failBean, ""));
     }
 
     private void showPopupWindow(View v) {

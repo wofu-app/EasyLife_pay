@@ -14,12 +14,13 @@ import com.landicorp.android.wofupay.bean.BasicBean;
 import com.landicorp.android.wofupay.bean.FailBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.PayContacts;
+import com.yanzhenjie.fragment.NoFragment;
 
 /**
  * 选择充值方式Fragment
  * Created by Administrator on 2017/3/22 0022.
  */
-public class PayTypeFragment extends BaseFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class PayTypeFragment extends NoFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -169,11 +170,11 @@ public class PayTypeFragment extends BaseFragment implements View.OnClickListene
                 if(basicBean == null){
                     throw new RuntimeException("尚未输入支付内容");
                 }
-                switchContent(this, PayDetailsFragment.newInstance(basicBean, PayContacts.ali_service));
+                startFragment(PayDetailsFragment.newInstance(basicBean, PayContacts.ali_service));
                 break;
             //微信支付
             case 1:
-                switchContent(this, PayDetailsFragment.newInstance(basicBean, PayContacts.weixin_service));
+                startFragment(PayDetailsFragment.newInstance(basicBean, PayContacts.weixin_service));
                 break;
             //银联支付
             case 2:
