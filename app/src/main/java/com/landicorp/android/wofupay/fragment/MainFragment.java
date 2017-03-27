@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.github.ikidou.fragmentBackHandler.BackHandledFragment;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.model.FileBean;
 import com.landicorp.android.wofupay.model.FunctionBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
+import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.widget.CustomLinerLayout;
+import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/3/16.
  */
-
-public class MainFragment extends BaseFragment implements View.OnClickListener {
+public class MainFragment extends NoFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -95,9 +94,9 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
             functions.add(id);
         }
 
-//        if (PayContacts.isDebug) {
-//            functions.add(R.drawable.violation);
-//        }
+        if (PayContacts.isDebug) {
+            functions.add(R.mipmap.violation);
+        }
         return functions;
     }
     /**
@@ -181,37 +180,26 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-
-                switchContent(this,GameRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
+                startFragment(GameRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.phone:
-
-                switchContent(this,PhoneRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new PhoneRechargeFragment()).commitAllowingStateLoss();
+//                startFragment(PhoneRechargeFragment.newInstance("",""));
                 break;
-            case R.mipmap.game:
-
-                switchContent(this,GameRechargeFragment.newInstance("",""));
-
-//                getChildFragmentManager().beginTransaction().addToBackStack("tag").replace(R.id.mainFragUI_framely, new GameRechargeFragment()).commitAllowingStateLoss();
-
-                Toast.makeText(getContext(),"点击了手机充值",Toast.LENGTH_SHORT).show();
+            case R.mipmap.game://游戏充值
+                startFragment(GameRechargeFragment.newInstance("",""));
                 break;
-            case  R.mipmap.gay://油卡充值
-                switchContent(this,GasRechargeFragment.newInstance("",""));
+            case R.mipmap.gay://油卡充值
+                startFragment(GasRechargeFragment.newInstance("",""));
                 break;
-            case  R.mipmap.water://水电煤选择界面
-                switchContent(this,ChooseButtonFragment.newInstance("",""));
+            case R.mipmap.water://水电煤选择界面
+//                startFragment(ChooseButtonFragment.newInstance("",""));
                 break;
             case R.mipmap.train_name://火车票界面
-                switchContent(this,TrainOneFragment.newInstance("",""));
+//                startFragment(TrainOneFragment.newInstance("",""));
                 break;
-            default:
+            case R.mipmap.market://商城界面
+                startFragment(MarketFragment.newInstance("",""));
                 break;
-
         }
     }
 

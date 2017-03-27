@@ -66,12 +66,5 @@ public class BaseFragment extends Fragment implements FragmentBackHandler {
             }
         }
     }
-    public <T extends Fragment> void finish(T fragment) {
-        FragmentManager fManager = getFragmentManager();
-        fManager
-                .beginTransaction()
-                .hide(fragment)
-                .commitAllowingStateLoss();
-    }
-    }
+}
 

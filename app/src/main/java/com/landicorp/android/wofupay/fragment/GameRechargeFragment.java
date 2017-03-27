@@ -10,12 +10,13 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import com.landicorp.android.wofupay.R;
+import com.yanzhenjie.fragment.NoFragment;
 
 /**
  * 游戏充值Fragment
  * Created by Administrator on 2017/3/16 0016.
  */
-public class GameRechargeFragment extends BaseFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class GameRechargeFragment extends NoFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -76,18 +77,18 @@ public class GameRechargeFragment extends BaseFragment implements View.OnClickLi
         mGridView.setOnItemClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.gameUI_backBtn:
-//                finish();
+                finish();
                 break;
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        startFragment(GameDetailFragment.newInstance(position,itemsStrings[position]));
     }
 
 }
