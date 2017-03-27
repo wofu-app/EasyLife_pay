@@ -21,6 +21,7 @@ import com.landicorp.android.wofupay.bean.ElecPayBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,13 +35,14 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 
+import static android.os.Build.VERSION_CODES.N;
 
 
 /**
  * Created by Administrator on 2017/3/21.
  */
 
-public class ElectricFragment extends BaseFragment implements   AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class ElectricFragment extends NoFragment implements   AdapterView.OnItemSelectedListener, View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private List<Areabean> provincelist = new ArrayList();
@@ -305,9 +307,7 @@ public class ElectricFragment extends BaseFragment implements   AdapterView.OnIt
         switch (v.getId()){
             case R.id.bt_cancle:
                 //隐藏当前的fragment
-                getFragmentManager().beginTransaction().hide(this).commit();
-                //进入主fragment
-                switchContent(this,MainFragment.newInstance("",""));
+                this.finish();
 
                 break;
 
