@@ -305,8 +305,6 @@ public class ElectricFragment extends BaseFragment implements   AdapterView.OnIt
         switch (v.getId()){
             case R.id.bt_cancle:
                 //隐藏当前的fragment
-                finish(this);
-
                 break;
 
             case R.id.bt_entry:
