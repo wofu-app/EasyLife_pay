@@ -35,5 +35,5 @@ dependencies {
     compile 'com.youth.banner:banner:+'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.github.ikidou:FragmentBackHandler:2.1'
-    compile 'com.yanzhenjie:fragment:1.0.0'
+
 }

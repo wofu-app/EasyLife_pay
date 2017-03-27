@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:gravity="center_horizontal"
+              android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp" >
+
+            <TextView
+                android:id="@+id/tv_startdata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#187BBE"
+                android:gravity="center"
+                android:text="出发日期"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="#187BBE"
+                android:gravity="center"
+                android:text="订票须知"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_stationmsg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_startdata"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_startStation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="杭州东"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_start_Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="7:50出发"
+                    android:textColor="#226996"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_TrainNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:drawableBottom="@mipmap/train7"
+                    android:gravity="center"
+                    android:text="G1403"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_trainTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="7时44分"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_arriveStation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="广州南"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_arriveTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="15:50到达"
+                    android:textColor="#226996"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ll_stationmsg"
+            android:background="#76787A" />
+
+        <LinearLayout
+            android:id="@+id/seatmsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view1" >
+
+            <!-- 商务座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_shangwuzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_shangwuzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="商务座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_shangwuzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_shangwuPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 特等座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_tedengzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_tedengzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="特等座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_tedengzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_tedengzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 一等座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_yidengzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_yidengzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="一等座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yidengzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yidengzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 二等座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_erdengzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_erdengzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="二等座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_erdengzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_erdengzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 高级软卧 -->
+
+            <LinearLayout
+                android:id="@+id/ll_gaojiruanwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_gaojiruanwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="高级软卧"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_gaojiruanwoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_gaojiruanwoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 软卧 -->
+
+            <LinearLayout
+                android:id="@+id/ll_ruanwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_ruanwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="软卧"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_ruanwoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_ruanwoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 硬卧 -->
+
+            <LinearLayout
+                android:id="@+id/ll_yingwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_yingwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="硬卧"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yingwoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yingwoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 软座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_ruanzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_ruanzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="软座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_ruanzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_ruanzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 硬座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_yingzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_yingzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="硬座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yingzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_yingzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!-- 无座 -->
+
+            <LinearLayout
+                android:id="@+id/ll_wuzuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/train_bai"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_wuzuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="fill_horizontal"
+                    android:text="无座"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_wuzuoNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18张"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_wuzuoPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="¥365.0"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/seatmsg"
+            android:background="#3D6E89" />
+        <!--
+            <ScrollView
+           android:layout_below="@id/view2"
+           android:id="@+id/scrollview"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1"
+           >
+        -->
+
+        <ListView
+            android:id="@+id/passenger_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_weight="1" >
+        </ListView>
+
+        <ImageView
+            android:id="@+id/iv_addpassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/train13" />
+
+        <Button
+            android:id="@+id/select_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/iv_addpassenger"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/train14" />
+    </LinearLayout>
+
+</LinearLayout>

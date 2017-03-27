@@ -33,4 +33,15 @@ public class TrainsStationsBean {
      */
     public String status;
 
+
+    @Override
+    public String toString() {
+        return "TrainsStationsBean{" +
+                "data=" + data +
+                ", msg='" + msg + '\'' +
+                ", sign='" + sign + '\'' +
+                ", srvDateTime='" + srvDateTime + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

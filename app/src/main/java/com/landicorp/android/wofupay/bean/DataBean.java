@@ -18,4 +18,12 @@ public class DataBean extends DataSupport {
      * 城市列表
      */
     public List<Train_City_Bean> list=new ArrayList<Train_City_Bean>();
+
+    @Override
+    public String toString() {
+        return "DataBean{" +
+                "hot=" + hot +
+                ", list=" + list +
+                '}';
+    }
 }

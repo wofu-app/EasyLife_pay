@@ -218,7 +218,7 @@
         <LinearLayout
             android:id="@+id/ll_num"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="1dp"
             android:orientation="horizontal"
@@ -229,7 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <!-- 车次信息 -->

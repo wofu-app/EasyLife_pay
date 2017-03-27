@@ -1,6 +1,7 @@
 package com.landicorp.android.wofupay.fragment;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -59,20 +60,18 @@ public class BaseFragment extends Fragment implements FragmentBackHandler {
     public void switchContent(Fragment from, Fragment to) {
         if (from != to) {
             if (!to.isAdded()) {    // 先判断是否被add过
-                getFragmentManager().beginTransaction().hide(from).add(R.id.fl_content, to).addToBackStack(null).commit(); // 隐藏当前的fragment，add下一个到Activity中
+                getFragmentManager().beginTransaction().hide(from).add(R.id.fl_content, to).addToBackStack("tag").commit(); // 隐藏当前的fragment，add下一个到Activity中
             } else {
                 getFragmentManager().beginTransaction().hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
             }
         }
     }
-
-    /**
-     * 提示
-     * @param msg
-     */
-    public void ToastMsg(String msg){
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    public <T extends Fragment> void finish(T fragment) {
+        FragmentManager fManager = getFragmentManager();
+        fManager
+                .beginTransaction()
+                .hide(fragment)
+                .commitAllowingStateLoss();
     }
-
-}
+    }
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:layout_gravity="center_horizontal"
+              android:orientation="horizontal" >
+
+    <CheckBox
+        android:id="@+id/item_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_tv_IDcard"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:text="410328199101019633"
+        android:textSize="15sp" />
+
+</LinearLayout>

@@ -24,7 +24,6 @@ import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.landicorp.android.wofupay.volley.VolleyHelper;
 import com.landicorp.android.wofupay.widget.MyRadioGroup;
-import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +39,7 @@ import static com.landicorp.android.wofupay.utils.AppUtils.isPhoneNumber;
  * Created by Administrator on 2017/3/16.
  */
 
-public class PhoneRechargeFragment extends NoFragment implements View.OnClickListener {
+public class PhoneRechargeFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

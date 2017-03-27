@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.landicorp.android.wofupay.R;
-import com.yanzhenjie.fragment.NoFragment;
 
 /**
  * 商城首页Fragment
  * Created by Administrator on 2017/3/25 0025.
  */
-public class MarketFragment extends NoFragment {
+public class MarketFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -43,6 +42,7 @@ public class MarketFragment extends NoFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_market, null);
+
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MarketFragment extends NoFragment {
     }
 
     private void initView(View view) {
-        startFragment(MarketFragment1.class);
+       // startFragment(MarketFragment1.class);
 
     }
 

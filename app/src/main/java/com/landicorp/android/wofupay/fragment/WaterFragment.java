@@ -17,7 +17,6 @@ import com.landicorp.android.wofupay.bean.ElecPayBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
-import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.HashMap;
 
@@ -30,7 +29,7 @@ import static com.landicorp.android.wofupay.R.string.phone_number;
  * Created by Administrator on 2017/3/21.
  */
 
-public class WaterFragment extends NoFragment implements View.OnClickListener {
+public class WaterFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String[] provinces = {"安徽省"};
@@ -131,7 +130,7 @@ public class WaterFragment extends NoFragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.bt_cancle:
                 //返回主fragment
-                this.finish();
+                switchContent(this,MainFragment.newInstance("",""));
                 break;
             case R.id.bt_entry:
                 getBillNo();

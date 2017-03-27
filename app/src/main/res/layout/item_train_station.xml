@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="0dp"
+              android:layout_height="30dp"
+              android:orientation="horizontal"
+
+              android:weightSum="20" >
+
+    <TextView
+        android:id="@+id/train_trainNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="G122"
+        android:textSize="8sp" />
+    <!-- 出发站和到达站 -->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/train9"
+                android:id="@+id/train_startPicture"
+                />
+
+            <TextView
+                android:id="@+id/train_startStation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="出发站"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/train10"
+                android:id="@+id/train_endPicture"
+                />
+
+            <TextView
+                android:id="@+id/train_endStation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="出发站"
+                android:textSize="8sp" />
+        </LinearLayout>
+        <!--
+             <TextView
+	        android:id="@+id/train_endStation"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:text="到达站"
+	        android:textSize="20sp"
+	        android:drawableLeft="@drawable/train10"
+	        />
+        -->
+    </LinearLayout>
+    <!--
+         <TextView
+        android:id="@+id/train_station"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="出发站\n到达站"
+        android:textSize="20sp"
+
+         />
+    -->
+
+    <TextView
+        android:id="@+id/train_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="出发时间\n到达时间"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/train_time1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="历时"
+        android:textSize="8sp" />
+    <!-- 商务座 -->
+
+    <TextView
+        android:id="@+id/train_shangwuzuo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 特等座 -->
+
+    <TextView
+        android:id="@+id/train_tedengseat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 一等座 -->
+
+    <TextView
+        android:id="@+id/train_yidengseat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 二等座 -->
+
+    <TextView
+        android:id="@+id/train_erdengseat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 高级软卧 -->
+
+    <TextView
+        android:id="@+id/gaojiruanwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 软卧 -->
+
+    <TextView
+        android:id="@+id/train_ruanwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 硬卧 -->
+
+    <TextView
+        android:id="@+id/train_yingwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 软座 -->
+
+    <TextView
+        android:id="@+id/train_ruanzuo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 硬座 -->
+
+    <TextView
+        android:id="@+id/train_yingzuo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 无座 -->
+
+    <TextView
+        android:id="@+id/wuzuo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+    <!-- 其他 -->
+
+    <TextView
+        android:id="@+id/train_else"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="--"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/train_yuding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="预定"
+        android:textColor="#ffffff"
+        android:textSize="8sp" />
+
+</LinearLayout>

@@ -21,4 +21,14 @@ public class Train_Hot_Bean {
      * 拼音
      */
     public String spell;
+
+    @Override
+    public String toString() {
+        return "Train_Hot_Bean{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", shortSpell='" + shortSpell + '\'' +
+                ", spell='" + spell + '\'' +
+                '}';
+    }
 }

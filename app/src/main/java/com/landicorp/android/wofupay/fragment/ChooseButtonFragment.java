@@ -10,14 +10,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.landicorp.android.wofupay.R;
-import com.yanzhenjie.fragment.NoFragment;
 
 
 /**
  * Created by Administrator on 2017/3/20.
  */
 
-public class ChooseButtonFragment extends NoFragment implements View.OnClickListener {
+public class ChooseButtonFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -87,20 +86,18 @@ public class ChooseButtonFragment extends NoFragment implements View.OnClickList
         switch (v.getId()){
             case R.id.bt_cancle:
                 //返回主fragment
-
-                this.finish();
+                //switchContent(this,ChooseButtonFragment.newInstance("",""));
+               // switchContent(this,MainFragment.newInstance("",""));
                 break;
             case R.id.bt_entry:
                 switch (id){
                     case R.id.btn_jump_electric:
                         //进入电费充值界面
-
-                        startFragment(ElectricFragment.newInstance("",""));
+                        switchContent(this,ElectricFragment.newInstance("",""));
                         break;
                     case R.id.btn_jump_water:
                         //进入水费充值界面
-
-                        startFragment(WaterFragment.newInstance("",""));
+                        switchContent(this,WaterFragment.newInstance("",""));
                         break;
                     default:
                         break;
