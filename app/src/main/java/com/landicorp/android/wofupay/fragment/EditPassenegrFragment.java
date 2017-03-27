@@ -17,6 +17,7 @@ import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.HttpParams;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import rx.Subscriber;
 
@@ -24,7 +25,7 @@ import rx.Subscriber;
  * Created by Administrator on 2017/3/25.
  */
 
-public class EditPassenegrFragment extends BaseFragment implements View.OnClickListener {
+public class EditPassenegrFragment extends NoFragment implements View.OnClickListener {
 
     private View mInflate;
     private String mParam1;

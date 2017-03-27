@@ -1,7 +1,9 @@
 package com.landicorp.android.wofupay.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.HttpParams;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import rx.Subscriber;
 
@@ -24,7 +27,7 @@ import rx.Subscriber;
  * Created by Administrator on 2017/3/24.
  */
 
-public class TrainSmsFragment extends BaseFragment implements View.OnClickListener {
+public class TrainSmsFragment extends NoFragment implements View.OnClickListener {
 
     private View mInflate;
     private String mParam1;
@@ -38,7 +41,7 @@ public class TrainSmsFragment extends BaseFragment implements View.OnClickListen
     private String mPhoneNum;
     private TimeCount mTimeCount;
     private int mNumcode;
-
+    private boolean hasVeri;
     public TrainSmsFragment() {
     }
 
@@ -128,10 +131,11 @@ public class TrainSmsFragment extends BaseFragment implements View.OnClickListen
                 Integer a = Integer.valueOf(trim);
                 if (a == mNumcode){
                     //进入选择联系人界面
-                    switchContent(this,SelectPassengerFragment.newInstance(mPhoneNum,""));
-
+                    hasVeri = true;
+                    startFragmentForResquest(SelectPassengerFragment.newInstance(mPhoneNum,""),1);
                 }else {
                     //验证码错误
+                    hasVeri = false;
                     mEd_sms.setError("验证码错误,请输入正确的验证码");
                 }
                 break;
@@ -139,6 +143,19 @@ public class TrainSmsFragment extends BaseFragment implements View.OnClickListen
                 break;
         }
     }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode,  Bundle result) {
+        super.onFragmentResult(requestCode, resultCode, result);
+        if (result == null){
+            result = new Bundle();
+        }
+        result.putBoolean("hasVeri",hasVeri);
+        result.putString("mPhoneNum",mPhoneNum);
+        setResult(RESULT_OK,result);
+        finish();
+    }
+
     private class TimeCount extends CountDownTimer {
 
         public TimeCount(long millisInFuture, long countDownInterval) {

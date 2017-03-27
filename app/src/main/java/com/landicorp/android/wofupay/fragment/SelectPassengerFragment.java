@@ -20,7 +20,9 @@ import com.landicorp.android.wofupay.bean.SelectPassenger;
 import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +33,7 @@ import rx.Subscriber;
  * Created by Administrator on 2017/3/24.
  */
 
-public class SelectPassengerFragment extends BaseFragment implements View.OnClickListener {
+public class SelectPassengerFragment extends NoFragment implements View.OnClickListener {
 
     private View mInflate;
     private String mParam1;
@@ -140,7 +142,7 @@ public class SelectPassengerFragment extends BaseFragment implements View.OnClic
         switch (v.getId()){
             case R.id.btn_select_back:
                 //返回前一个火车票界面
-                getFragmentManager().beginTransaction().hide(this).commit();
+                finish();
                 break;
             case R.id.btn_select_ok:
                 //ok按钮
@@ -149,12 +151,17 @@ public class SelectPassengerFragment extends BaseFragment implements View.OnClic
                     Toast.makeText(getContext(),"最多添加5个乘车人",Toast.LENGTH_SHORT).show();
                 }else {
                     //返回前一个界面 ,并把数据传递过去
-
+                    Bundle bundle = new Bundle();
+                    JLog.d("------------",list.toString());
+                    bundle.putSerializable("passenger", (Serializable) list);
+                    bundle.putString("pidname",pidname);
+                    setResult(RESULT_CANCELED,bundle);
+                    finish();
                 }
                 break;
             case R.id.iv_select_addpassenger:
                 //进入编辑联系人界面
-                switchContent(this,EditPassenegrFragment.newInstance(idNum+"",""));
+                startFragment(EditPassenegrFragment.newInstance(idNum+"",""));
                 break;
             default:
                 break;

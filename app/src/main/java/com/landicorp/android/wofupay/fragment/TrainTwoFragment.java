@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.landicorp.android.wofupay.R;
+import com.landicorp.android.wofupay.adapter.PassengerAdapter;
+import com.landicorp.android.wofupay.bean.Passenger;
 import com.landicorp.android.wofupay.bean.TrainMeaasgeBean;
 import com.landicorp.android.wofupay.utils.JLog;
+import com.yanzhenjie.fragment.NoFragment;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.R.attr.duration;
+import static android.R.id.list;
 import static com.landicorp.android.wofupay.R.id.gaojiruanwo;
 import static com.landicorp.android.wofupay.R.id.ll_erdengzuo;
 import static com.landicorp.android.wofupay.R.id.ll_gaojiruanwo;
@@ -60,7 +69,7 @@ import static com.landicorp.android.wofupay.R.id.wuzuo;
  * Created by Administrator on 2017/3/24.
  */
 
-public class TrainTwoFragment extends BaseFragment implements View.OnClickListener {
+public class TrainTwoFragment extends NoFragment implements View.OnClickListener {
     private int num;
     private View mInflate;
     private static final String ARG_PARAM1 = "param1";
@@ -110,6 +119,12 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
     private ListView mPassenger_listView;
     private double ticketPrice;
     private String zuoweixibie = "";
+    private boolean hasVeri;
+    private ArrayList<Passenger> list = new ArrayList<Passenger>();
+    private String mPidname;
+    private String mPhoneNum;
+    private PassengerAdapter mAdapter;
+
     public TrainTwoFragment() {
     }
 
@@ -139,7 +154,14 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
         initView();
         initData();
         initListener();
+        initPassengerListViewData();
         return mInflate;
+    }
+
+    private void initPassengerListViewData() {
+        mAdapter = new PassengerAdapter(this.getContext(), list, zuoweixibie);
+        mPassenger_listView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void initListener() {
@@ -323,9 +345,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.shangwuzuoPrice;
                 zuoweixibie = "商务座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
 
                 break;
             case R.id.ll_tedengzuo:// 特等座
@@ -343,9 +365,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.tedengzuoPrice;
                 zuoweixibie = "特等座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_yidengzuo:// 一等座
                 num = Integer.valueOf(mBean.yidengzuo);
@@ -361,9 +383,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.yidengzuoPrice;
                 zuoweixibie = "一等座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_erdengzuo:// 二等座
                 num = Integer.valueOf(mBean.erdengzuo);
@@ -379,9 +401,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.erdengzuoPrice;
                 zuoweixibie = "二等座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_gaojiruanwo:// 高级软卧
                 num = Integer.valueOf(mBean.gaojiruanwo);
@@ -397,9 +419,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.gaojiruanwoPrice;
                 zuoweixibie = "高级软卧";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_ruanwo:// 软卧
                 num = Integer.valueOf(mBean.ruanwoshang);
@@ -415,9 +437,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.ruanwoshangPrice;
                 zuoweixibie = "软卧";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_yingwo:// 硬卧
                 num = Integer.valueOf(mBean.yingwozhong);
@@ -433,9 +455,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.yingwozhongPrice;
                 zuoweixibie = "硬卧";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_ruanzuo:// 软座
                 num = Integer.valueOf(mBean.ruanzuo);
@@ -452,9 +474,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.ruanzuoPrice;
                 zuoweixibie = "软座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_yingzuo:// 硬座
                 num = Integer.valueOf(mBean.yingzuo);
@@ -471,9 +493,9 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_bai);
                 ticketPrice = mBean.yingzuoPrice;
                 zuoweixibie = "硬座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.ll_wuzuo:// 无座
                 num = Integer.valueOf(mBean.wuzuo);
@@ -489,20 +511,44 @@ public class TrainTwoFragment extends BaseFragment implements View.OnClickListen
                 mLl_wuzuo.setBackgroundResource(R.mipmap.train_lan);
                 ticketPrice = mBean.wuzuoPrice;
                 zuoweixibie = "无座";
-//                if (passengerAdapter != null) {
-//                    passengerAdapter.setZuoWei(zuoweixibie);
-//                }
+                if (mAdapter != null) {
+                    mAdapter.setZuoWei(zuoweixibie);
+                }
                 break;
             case R.id.iv_addpassenger://点击进入添加联系人界面
-                //TODO 手机号码传过去
-               // switchContent(this,SelectPassengerFragment.newInstance("","")); //选择联系人界面
+                //
+                if (hasVeri){
+                    //进入选择联系人界面
+                    startFragmentForResquest(SelectPassengerFragment.newInstance(mPhoneNum,""),1);
+                }else {
+                    startFragmentForResquest(TrainSmsFragment.newInstance("",""),1); //短信验证界面
+                }
 
-                //this.start
-                // switchContent(this,TrainSmsFragment.newInstance("","")); //短信验证界面
 
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode,  Bundle result) {
+        super.onFragmentResult(requestCode, resultCode, result);
+        if (result !=null&&resultCode!=RESULT_CANCELED){
+            mPidname = result.getString("pidname");
+            mPhoneNum = result.getString("mPhoneNum");
+        }
+        if (resultCode==RESULT_OK||resultCode==RESULT_CANCELED){
+            list.clear();
+            List<Passenger> result1 = (List<Passenger>) result.getSerializable("passenger");
+            JLog.d("--------",result1.toString());
+            hasVeri = result.getBoolean("hasVeri");
+            if (result1!=null){
+                list.addAll(result1);
+            }
+            if (mAdapter != null) {
+                mAdapter.notifyDataSetChanged();
+            }
         }
     }
 }

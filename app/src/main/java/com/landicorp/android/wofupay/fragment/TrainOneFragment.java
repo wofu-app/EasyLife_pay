@@ -27,6 +27,8 @@ import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.HttpParams;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
+
 import org.litepal.crud.DataSupport;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ import static com.landicorp.android.wofupay.utils.AppUtils.getStringDate;
  * Created by Administrator on 2017/3/22.
  */
 
-public class TrainOneFragment extends BaseFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class TrainOneFragment extends NoFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Train_City_Bean> list = new ArrayList<Train_City_Bean>();// 车站的集合
     private List<Train_Station.StationBean.TrainStationBean> trainList;

@@ -183,7 +183,7 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
                 startFragment(GameRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.phone:
-//                startFragment(PhoneRechargeFragment.newInstance("",""));
+                startFragment(PhoneRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.game://游戏充值
                 startFragment(GameRechargeFragment.newInstance("",""));
@@ -192,10 +192,10 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
                 startFragment(GasRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.water://水电煤选择界面
-//                startFragment(ChooseButtonFragment.newInstance("",""));
+                startFragment(ChooseButtonFragment.newInstance("",""));
                 break;
             case R.mipmap.train_name://火车票界面
-//                startFragment(TrainOneFragment.newInstance("",""));
+                startFragment(TrainOneFragment.newInstance("",""));
                 break;
             case R.mipmap.market://商城界面
                 startFragment(MarketFragment.newInstance("",""));

@@ -433,6 +433,6 @@ public class TrainStationAdapter extends BaseAdapter {
         trainMeaasgeBean.departStationCode = departStationCode;
         trainMeaasgeBean.arriveStationCode = arriveStationCode;
         TrainOneFragment fragment = context;
-        fragment.switchContent(context,new TrainTwoFragment().newInstance(trainMeaasgeBean,""));
+        fragment.startFragment(TrainTwoFragment.newInstance(trainMeaasgeBean,""));
     }
 }
