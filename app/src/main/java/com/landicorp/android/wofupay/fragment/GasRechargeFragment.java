@@ -17,6 +17,7 @@ import com.landicorp.android.wofupay.bean.GasBean;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.utils.StringUtils;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
+import com.yanzhenjie.fragment.NoFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ import rx.Subscriber;
  * Created by Administrator on 2017/3/18.
  */
 
-public class GasRechargeFragment extends BaseFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class GasRechargeFragment extends NoFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -134,18 +135,18 @@ public class GasRechargeFragment extends BaseFragment implements View.OnClickLis
             case R.id.gasRechUI_okBtn:
                 String cardNo = mCardNoEdit.getText().toString().trim();
                 if (TextUtils.isEmpty(cardNo)) {
-                    ToastMsg("请输入加油卡号");
+//                    ToastMsg("请输入加油卡号");
                     return;
                 }
 
                 String cardEntry = mAgianNoEdit.getText().toString().trim();
 
                 if (TextUtils.isEmpty(cardEntry)) {
-                    ToastMsg("请确认加油卡号");
+//                    ToastMsg("请确认加油卡号");
                     return;
                 }
                 if (!cardEntry.equals(cardNo)) {
-                    ToastMsg("请确认账号是否一致");
+//                    ToastMsg("请确认账号是否一致");
                     return;
                 }
 
@@ -159,18 +160,18 @@ public class GasRechargeFragment extends BaseFragment implements View.OnClickLis
                         && cardNo.length() == 19) {
                     cardType = 1;
                 } else {
-                    ToastMsg("请输入正确的加油卡号");
+//                    ToastMsg("请输入正确的加油卡号");
                     return;
                 }
 
                 String phoneNumber = mPhoneEdit.getText().toString().trim();
                 if (!StringUtils.isPhoneNumber(phoneNumber)) {
-                    ToastMsg("请输入正确的手机号码");
+//                    ToastMsg("请输入正确的手机号码");
                     return;
                 }
 
                 if (TextUtils.isEmpty(gasBean.payAmount)) {
-                    ToastMsg("请选择充值金额");
+//                    ToastMsg("请选择充值金额");
                     return;
                 }
 
@@ -223,11 +224,11 @@ public class GasRechargeFragment extends BaseFragment implements View.OnClickLis
     }
 
     public void jumpToPay(GasBean gasBean, String payAmount) {
-        switchContent(this, PayTypeFragment.newInstance(gasBean, null, payAmount));
+//        switchContent(this, PayTypeFragment.newInstance(gasBean, null, payAmount));
     }
 
     public void jumpToFail(FailBean failBean) {
-        switchContent(this, PayTypeFragment.newInstance(null, failBean, ""));
+//        switchContent(this, PayTypeFragment.newInstance(null, failBean, ""));
     }
 
 }

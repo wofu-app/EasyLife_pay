@@ -189,7 +189,7 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
                 startFragment(GameRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.gay://油卡充值
-//                startFragment(GasRechargeFragment.newInstance("",""));
+                startFragment(GasRechargeFragment.newInstance("",""));
                 break;
             case R.mipmap.water://水电煤选择界面
 //                startFragment(ChooseButtonFragment.newInstance("",""));
