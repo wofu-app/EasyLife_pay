@@ -52,7 +52,7 @@ public class MarketFragment extends NoFragment {
     }
 
     private void initView(View view) {
-
+        startFragment(MarketFragment1.class);
 
     }
 
