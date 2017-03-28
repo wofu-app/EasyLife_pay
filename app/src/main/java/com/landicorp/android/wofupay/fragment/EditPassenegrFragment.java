@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -32,6 +33,8 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
     private String mParam2;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
+    private static final String ARG_PARAM4 = "param4";
     private EditText mEd_name;
     private EditText mEd_phone;
     private EditText mEd_idcard;
@@ -40,15 +43,20 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
     private String mName;
     private String mPhone;
     private String mIdcard;
+    private String mPhonenum;
+    private boolean mRegrist;
+    private TextView mTitle;
 
     public EditPassenegrFragment() {
     }
 
-    public static EditPassenegrFragment newInstance(String param1, String param2) {
+    public static EditPassenegrFragment newInstance(String param1, String param2,String param3,Boolean regrist) {
         EditPassenegrFragment fragment = new EditPassenegrFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
+        args.putBoolean(ARG_PARAM4,regrist);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +65,11 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString(ARG_PARAM1); //idNum
+            mParam2 = getArguments().getString(ARG_PARAM2); //pidname
+            //phonenum
+            mPhonenum = getArguments().getString(ARG_PARAM3);
+            mRegrist = getArguments().getBoolean(ARG_PARAM4);
         }
     }
     @Override
@@ -71,14 +82,21 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
 
     private void initListener() {
         mBtn_cancale.setOnClickListener(this);
+        mBtn_passengerok.setOnClickListener(this);
     }
 
     private void initView() {
+        mTitle = (TextView) mInflate.findViewById(R.id.text_title);
         mEd_name = (EditText) mInflate.findViewById(R.id.et_passengerName);
         mEd_phone = (EditText) mInflate.findViewById(R.id.et_passengerPhone);
         mEd_idcard = (EditText) mInflate.findViewById(R.id.et_passengerIdcard);
         mBtn_passengerok = (Button) mInflate.findViewById(R.id.button_ok);
         mBtn_cancale = (Button) mInflate.findViewById(R.id.button_cancel);
+        if (mRegrist){
+            mEd_phone.setText(mPhone);
+            mEd_phone.setKeyListener(null);
+            mTitle.setText("注册联系人");
+        }
     }
 
     @Override
@@ -86,7 +104,7 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
         switch (v.getId()){
             case R.id.button_cancel:
                 //影藏当前界面
-
+                finish();
                 break;
             case R.id.button_ok:
                 //获取数据
@@ -105,7 +123,7 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
             mEd_name.setError("请输入乘车人姓名");
             return;
         }
-        if (TextUtils.isEmpty(mPhone)|| AppUtils.isPhoneNumber(mPhone)){
+        if (TextUtils.isEmpty(mPhone)||! AppUtils.isPhoneNumber(mPhone)){
             mEd_phone.setError("请输入乘车人电话号码");
             return;
         }
@@ -140,9 +158,7 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
                 if (bean.code.equals("002")){
                     Toast.makeText(getContext(),"联系人已存在,不需要重复添加",Toast.LENGTH_SHORT).show();
                 }else {
-                    //关闭当前界面
-                   // getFragmentManager().beginTransaction().hide(EditPassenegrFragment.newInstance("","")).commit();
-                   // getFragmentManager().beginTransaction().remove().commit();
+                    finish();
 
                 }
             }

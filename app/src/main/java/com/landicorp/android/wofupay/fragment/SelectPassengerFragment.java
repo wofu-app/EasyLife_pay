@@ -161,7 +161,8 @@ public class SelectPassengerFragment extends NoFragment implements View.OnClickL
                 break;
             case R.id.iv_select_addpassenger:
                 //进入编辑联系人界面
-                startFragment(EditPassenegrFragment.newInstance(idNum+"",""));
+                startFragment(EditPassenegrFragment.newInstance(idNum+"",pidname+"",mParam1,regrist));
+
                 break;
             default:
                 break;

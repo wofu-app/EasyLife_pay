@@ -3,6 +3,8 @@ package com.landicorp.android.wofupay.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,37 +77,31 @@ public class PassengerAdapter extends BaseAdapter {
         }else{
             convertView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
-        //holder.item_tv_name.setText(list.get(position).name);
-        //holder.item_tv_Idcard.setText(list.get(position).idcard);
         holder.item_tv_zuoweixibie.setText(zuoweixibie);
-//        holder.item_btn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                Builder builder = new AlertDialog.Builder(context);
-//                builder.setTitle(context.getString(R.string.Title));
-//                builder.setMessage("确定删除该乘客吗?");
-//                builder.setNegativeButton("确认", new DialogInterface.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        list.remove(position);
-//                        notifyDataSetChanged();
-//                    }
-//                });
-//                builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                        notifyDataSetChanged();
-//                    }
-//                });
-//                builder.create().show();
-//
-//
-//            }
-//        });
+        holder.item_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(context.getString(R.string.Title));
+                builder.setMessage("确定删除该乘客吗?");
+                builder.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        list.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.create().show();
+            }
+
+        });
         return convertView;
     }
     private class ViewHolder{

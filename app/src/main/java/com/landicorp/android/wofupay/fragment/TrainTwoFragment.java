@@ -13,20 +13,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.adapter.PassengerAdapter;
+import com.landicorp.android.wofupay.bean.LastPassenger;
 import com.landicorp.android.wofupay.bean.Passenger;
 import com.landicorp.android.wofupay.bean.TrainMeaasgeBean;
+import com.landicorp.android.wofupay.bean.TrainPayBean;
+import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.JLog;
+import com.landicorp.android.wofupay.utils.PayContacts;
+import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.yanzhenjie.fragment.NoFragment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import rx.Subscriber;
 
 import static android.R.attr.duration;
 import static android.R.id.list;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static com.landicorp.android.wofupay.R.id.gaojiruanwo;
 import static com.landicorp.android.wofupay.R.id.ll_erdengzuo;
 import static com.landicorp.android.wofupay.R.id.ll_gaojiruanwo;
@@ -124,7 +135,10 @@ public class TrainTwoFragment extends NoFragment implements View.OnClickListener
     private String mPidname;
     private String mPhoneNum;
     private PassengerAdapter mAdapter;
-
+    private LastPassenger lastPassenger;
+    private ArrayList<LastPassenger> lastPassengers;
+    private String stringToUnicode;
+    private String substring;
     public TrainTwoFragment() {
     }
 
@@ -523,12 +537,167 @@ public class TrainTwoFragment extends NoFragment implements View.OnClickListener
                 }else {
                     startFragmentForResquest(TrainSmsFragment.newInstance("",""),1); //短信验证界面
                 }
+                break;
+            case R.id.select_btn: //提交订单
+                if (list.size()>0&&zuoweixibie!=null){
+                    initMsg(); //提交订单的信息
 
+                if (lastPassengers.size() > 0
+                        && num >= lastPassengers.size()) {
+                    getBillNo();
+
+                } else if (num >= lastPassengers.size()) {
+                    Toast.makeText(this.getContext(),"余票少于乘客人次,请选择其他座位席别",Toast.LENGTH_SHORT).show();
+
+                } else if (lastPassengers.size() > 5) {
+                    Toast.makeText(this.getContext(),"最多只能选择5位乘客,请修改乘客数量",Toast.LENGTH_SHORT).show();
+
+                } else if (num==0) {
+                    Toast.makeText(this.getContext(),"请选择席别",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(this.getContext(),"请添加乘客",Toast.LENGTH_SHORT).show();
+
+                }
+
+        } else if (list.size() > 0 && zuoweixibie == null) {
+                    Toast.makeText(this.getContext(),"请选择座位席别",Toast.LENGTH_SHORT).show();
+
+        } else if (list.size() == 0 && zuoweixibie != null) {
+                    Toast.makeText(this.getContext(),"请添加联系人",Toast.LENGTH_SHORT).show();
+
+        } else {
+                    Toast.makeText(this.getContext(),"请添加联系人并且选择座位席别",Toast.LENGTH_SHORT).show();
+        }
 
                 break;
             default:
                 break;
         }
+    }
+
+    private void getBillNo() {
+        //TODO 提示框
+        RxVolleyHelper helper = new RxVolleyHelper(PayContacts.URL);
+        HashMap<String, String> params = new HashMap<>();
+        Double amount = (lastPassenger.ticketPrice+10)
+                * lastPassengers.size();
+        params.put("action", "GetHPBillNo");
+        params.put("rechargeAccount", "");
+        //TODO 终端号
+       // params.put("terminalcode", DeviceUtils.getDevicePort());
+        params.put("mobile", mPhoneNum);
+        params.put("amount", amount + "");
+        params.put("BN_type", "train");
+        params.put("BN_memo", "火车票");
+        helper.postParams(params).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Toast.makeText(getContext(),"订单生成失败",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNext(String s) {
+                if (s!=null){
+                    //进入账单信息界面
+                    TrainPayBean bean = new TrainPayBean();
+                    bean.reqDateTime = AppUtils
+                            .getStringDate("yyyyMMddHHmmss");
+                    bean.queryKey = mBean.queryKey;
+                    bean.trainNo = mBean.trainNo;
+                    bean.departStationCode = mBean.departStationCode;
+                    bean.arriveStationCode = mBean.arriveStationCode;
+                    bean.departDate = mBean.godata;
+                    bean.departTime = mBean.departTime;
+                    bean.contactName = stringToUnicode;
+                    bean.contactMobile =mPhoneNum;
+                    bean.passengers = substring;
+                    bean.function = 7;
+                    bean.BillNo = s;
+                    bean.phoneNumber = mPhoneNum;
+                    startFragment(TrainBillMsgFragment.newInstance(mBean,zuoweixibie,lastPassengers,bean));
+                }else {
+                    Toast.makeText(getContext(),"订单生成失败",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void initMsg() {
+
+        lastPassengers = new ArrayList<LastPassenger>();
+        if (list != null && list.size() > 0) {
+
+            for (int i = 0; i < list.size(); i++) {
+                lastPassenger = new LastPassenger();
+                stringToUnicode = AppUtils.stringToUnicode(mPidname);
+                lastPassenger.name = list.get(i).name;
+                lastPassenger.cardNo = list.get(i).idcard;
+                lastPassenger.phonenum=list.get(i).phoneNum;
+                if (zuoweixibie.equals("商务座")) {
+                    lastPassenger.seatType = 9;
+                } else if (zuoweixibie.equals("一等座")) {
+                    lastPassenger.seatType = 5;
+                } else if (zuoweixibie.equals("特等座")) {
+                    lastPassenger.seatType = 8;
+                } else if (zuoweixibie.equals("二等座")) {
+                    lastPassenger.seatType = 4;
+                } else if (zuoweixibie.equals("高级软座")) {
+                    lastPassenger.seatType = 15;
+                } else if (zuoweixibie.equals("软卧")) {
+                    lastPassenger.seatType = 14;
+                } else if (zuoweixibie.equals("硬卧")) {
+                    lastPassenger.seatType = 11;
+                } else if (zuoweixibie.equals("软座")) {
+                    lastPassenger.seatType = 3;
+                } else if (zuoweixibie.equals("硬座")) {
+                    lastPassenger.seatType = 2;
+                } else if (zuoweixibie.equals("无座")) {
+                    lastPassenger.seatType = 1;
+                }
+                lastPassenger.ticketPrice = ticketPrice;
+                lastPassenger.type = 1;// 固定为成人
+                lastPassenger.cardType = 1;// 固定为身份证
+                String birthString = getbirth(lastPassenger.cardNo);
+                lastPassenger.birth = birthString;
+
+                lastPassengers.add(lastPassenger);
+            }
+
+
+
+            if (lastPassengers != null) {
+                String string = "[";
+                for (LastPassenger list : lastPassengers) {
+                    string += "{\"type\":1,\"name\":\"" + list.name
+                            + "\",\"cardType\":1,\"cardNo\":\"" + list.cardNo
+                            + "\",\"birth\":\"" + list.birth
+                            + "\",\"seatType\":" + list.seatType
+                            + ",\"ticketPrice\":" + list.ticketPrice + "},";
+                }
+                int lastIndexOf = string.lastIndexOf(",");
+                substring = string.substring(0, lastIndexOf);
+                substring += "]";
+                Gson gson = new Gson();
+                substring= gson.toJson(lastPassengers);
+            }
+
+        } else {
+            AppUtils.showMessage(this.getContext(),"请添加联系人");
+        }
+
+    }
+
+    private String getbirth(String cradNo) {
+        String year = cradNo.substring(6, 10);
+        String month = cradNo.substring(10, 12);
+        String day = cradNo.substring(12, 14);
+        return year + "-" + month + "-" + day;
     }
 
     @Override
