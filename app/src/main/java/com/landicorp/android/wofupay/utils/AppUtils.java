@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -478,5 +480,35 @@ public class AppUtils {
 
 		return outBuffer.toString();
 
+	}
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+	 */
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+	/**
+	 * 获取两位小数
+	 *
+	 * @param data
+	 * @return
+	 */
+	public static float get2Double(double data) {
+		BigDecimal b = new BigDecimal(data);
+		// return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+		// b.setScale(2, BigDecimal.ROUND_HALF_UP) 表明四舍五入，保留两位小数
+		float v = (float) Double.parseDouble(String.format("%.2f", data));
+
+		return v;
+	}
+	/**
+	 * dp 2 px
+	 *
+	 * @param dpVal
+	 */
+	public static int dp2px(int dpVal, Context c) {
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+				dpVal, c.getResources().getDisplayMetrics());
 	}
 }

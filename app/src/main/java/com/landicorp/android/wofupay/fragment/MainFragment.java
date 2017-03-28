@@ -200,6 +200,13 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
             case R.mipmap.market://商城界面
                 startFragment(MarketFragment.newInstance("",""));
                 break;
+            case R.mipmap.gongyi://公益界面
+                startFragment(GongYiFragment.newInstance("",""));
+                break;
+            case R.mipmap.wofu_bank://金融
+                startFragment(JumpFragment.newInstance("",""));
+            default:
+                break;
         }
     }
 
