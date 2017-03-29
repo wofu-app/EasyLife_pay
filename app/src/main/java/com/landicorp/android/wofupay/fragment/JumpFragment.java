@@ -68,10 +68,10 @@ public class JumpFragment extends NoFragment implements View.OnClickListener {
             case R.id.card:
                 url = "https://ccshop.cib.com.cn:8010/application/cardapp/Fast/TwoBar/viewNew?id=872ca0f231334bef992b86748868bccb";
                 break;
-            case R.id.daikuan:
+            case R.id.licai:
                 url = "https://www.ysfas.com//appweb/finance.do";
                 break;
-            case R.id.licai:
+            case R.id.daikuan:
                 url = "http://wfb.ahwofu.com/app/index.php?i=8&c=home&t=7";
                 break;
             default:

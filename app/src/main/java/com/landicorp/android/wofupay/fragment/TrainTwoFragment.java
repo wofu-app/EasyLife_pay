@@ -1,10 +1,6 @@
 package com.landicorp.android.wofupay.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.adapter.PassengerAdapter;
@@ -27,18 +22,10 @@ import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.yanzhenjie.fragment.NoFragment;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import rx.Subscriber;
-
-import static android.R.attr.duration;
-import static android.R.id.list;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static com.landicorp.android.wofupay.R.id.gaojiruanwo;
 import static com.landicorp.android.wofupay.R.id.ll_erdengzuo;
 import static com.landicorp.android.wofupay.R.id.ll_gaojiruanwo;
 import static com.landicorp.android.wofupay.R.id.ll_ruanwo;
@@ -570,6 +557,10 @@ public class TrainTwoFragment extends NoFragment implements View.OnClickListener
                     Toast.makeText(this.getContext(),"请添加联系人并且选择座位席别",Toast.LENGTH_SHORT).show();
         }
 
+                break;
+            case R.id.btn_message:
+                //进入订票须知界面
+                startFragment(TrainMessageFragment.newInstance("",""));
                 break;
             default:
                 break;

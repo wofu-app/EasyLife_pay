@@ -61,6 +61,7 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
     private PhoneBean bean;
     private Yin_FlowQueryBean flowBean;
     private Yin_FlowQueryBean.RecordsBean mRecordsBean;
+    private ImageButton mBt_calcel;
 
     public PhoneRechargeFragment() {
     }
@@ -97,6 +98,7 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
 
     private void initListener() {
         mBt_entry.setOnClickListener(this);
+        mBt_calcel.setOnClickListener(this);
         mEt_phone.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -306,6 +308,7 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
         tv_pay = (TextView) mView.findViewById(R.id.phone_tv_pay);
         mBt_entry = (ImageButton) mView.findViewById(bt_entry);
         tv_load = (TextView) mView.findViewById(R.id.phone_tv_load);
+        mBt_calcel = (ImageButton) mView.findViewById(R.id.bt_cancle);
         mBt_entry.setEnabled(false);
     }
     public boolean checkMNO(String phone) {
@@ -380,6 +383,9 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
         switch (v.getId()){
             case R.id.bt_entry:
                 getBillNo();
+                break;
+            case R.id.bt_cancle:
+                finish();
                 break;
             default:
                 break;

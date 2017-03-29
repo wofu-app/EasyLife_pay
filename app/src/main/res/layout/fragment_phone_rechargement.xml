@@ -203,7 +203,7 @@
                     android:id="@+id/bt_cancle"
                     style="@style/left_button_style"
                     android:contentDescription="@string/content_description"
-                    android:onClick="onPage1BusExitClick" />
+                    />
 
                 <TextView
                     android:layout_width="0dip"
