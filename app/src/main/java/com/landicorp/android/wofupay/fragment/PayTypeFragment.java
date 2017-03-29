@@ -155,7 +155,7 @@ public class PayTypeFragment extends NoFragment implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.payTypeUI_backBtn:
-
+                finish();
                 break;
             case R.id.payTypeUI_okBtn:
                 onEntryClick();

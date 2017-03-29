@@ -1,11 +1,15 @@
 package com.landicorp.android.wofupay.fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
@@ -89,6 +93,29 @@ public class GameRechargeFragment extends NoFragment implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         startFragment(GameDetailFragment.newInstance(position,itemsStrings[position]));
+    }
+
+    public void showDiolog(){
+        final AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setContentView(R.layout.diolog_base);
+        window.setGravity(Gravity.BOTTOM);
+
+        Button btn1 = (Button) window.findViewById(R.id.cancelBtn);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Button btn2 = (Button) window.findViewById(R.id.okBtn);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
 }

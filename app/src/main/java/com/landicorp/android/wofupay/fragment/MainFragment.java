@@ -2,6 +2,7 @@ package com.landicorp.android.wofupay.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -180,7 +181,7 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
         switch (tag) {
             // 公交卡充值
             case R.mipmap.buscard:
-                startFragment(GameRechargeFragment.newInstance("",""));
+                startFragment(MarketFragment.newInstance("",""));
                 break;
             case R.mipmap.phone:
                 startFragment(PhoneRechargeFragment.newInstance("",""));
