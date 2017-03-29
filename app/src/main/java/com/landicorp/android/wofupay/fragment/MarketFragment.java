@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,14 +17,13 @@ import com.google.gson.reflect.TypeToken;
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.adapter.GoodsAdapter;
 import com.landicorp.android.wofupay.adapter.OnItemClickListener;
-import com.landicorp.android.wofupay.bean.FailBean;
 import com.landicorp.android.wofupay.bean.ShopBean;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.utils.SpacesItemDecoration;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
-import com.landicorp.android.wofupay.volley.VolleyHelper;
 import com.yanzhenjie.fragment.NoFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +54,8 @@ public class MarketFragment extends NoFragment implements View.OnClickListener, 
     private RecyclerView mRecyclerView;
     private GoodsAdapter mAdapter;
 
+    private List<ShopBean> mShopModel = new ArrayList<ShopBean>();
+
     private boolean isRefresh = true;//是否刷新中
 
     public MarketFragment() {
@@ -82,15 +82,11 @@ public class MarketFragment extends NoFragment implements View.OnClickListener, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_market, null);
-
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        Log.e("MyTest0328","======Enter001=====");
-
         initView(view);
         httpData();
     }
@@ -147,7 +143,7 @@ public class MarketFragment extends NoFragment implements View.OnClickListener, 
                 mRefresh.setRefreshing(false);
                 Gson gson = new Gson();
                 try {
-                    List<ShopBean> mShopModel = gson.fromJson(s, new TypeToken<List<ShopBean>>() {}.getType());
+                    mShopModel = gson.fromJson(s, new TypeToken<List<ShopBean>>() {}.getType());
                     if(mShopModel !=null && mShopModel.size() > 0){
                         mAdapter.setHeadData(false);
                         mAdapter.setData(mShopModel);
@@ -176,7 +172,7 @@ public class MarketFragment extends NoFragment implements View.OnClickListener, 
 
     @Override
     public void onItemClick(View view, int position) {
-        startFragment(GoodsInforFragment.newInstance("",""));
+        startFragment(GoodsInforFragment.newInstance(mShopModel.get(position).id, ""));
     }
 
     @Override

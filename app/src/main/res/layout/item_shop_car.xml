@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/itemCarUI_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:focusable="false" />
+
+        <ImageView
+            android:id="@+id/itemCarUI_goodsImg"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/market" />
+
+        <TextView
+            android:id="@+id/itemCarUI_goodsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="山里珍"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/itemCarUI_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="119元"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/itemCarUI_price"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="数量"
+                    android:textColor="@color/txt_c1"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/itemCarUI_delBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_framebotto"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/itemCarUI_goodsNum"
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_framebotto"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="1"
+                    android:textColor="@color/txt_c1"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/itemCarUI_addBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_framebotto"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

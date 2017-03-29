@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 商品列表Adapter
  * Created by Administrator on 2017/3/28 0028.
  */
 public class GoodsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

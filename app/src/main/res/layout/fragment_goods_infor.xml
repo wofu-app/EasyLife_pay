@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/goods_info" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal" >
+
+                <com.youth.banner.Banner
+                    android:id="@+id/goodsInfoUI_banner"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp" >
+
+                    <TextView
+                        android:id="@+id/goodsInfoUI_goodsName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="精选组合真材实料山里珍套装"
+                        android:textColor="@color/common_black"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/goods_info_bg"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="品名："
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_proName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="山里珍组合"
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="价格："
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_goodsPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="199元"
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="促销价："
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_salePrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="109元"
+                                android:textColor="@color/red"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="本店活动："
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_shopAct"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="满两件包邮"
+                                android:textColor="@color/red"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_express"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="快递：包邮"
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_stock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center_vertical"
+                                android:text="库存：10000"
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/goodsInfoUI_salesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center_vertical"
+                                android:text="销量：10件"
+                                android:textColor="@color/txt_c1"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:gravity="center_vertical|right"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical"
+                            android:text="数量"
+                            android:textColor="@color/txt_c1"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/goodsInfoUI_delBtn"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_btn_gray"
+                            android:gravity="center"
+                            android:text="-"
+                            android:textColor="@color/txt_c1"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/goodsInfoUI_editCount"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/et_bg"
+                            android:editable="false"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text="1"
+                            android:textColor="@color/txt_c1"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/goodsInfoUI_addBtn"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_btn_gray"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/txt_c1"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/goodsInfoUI_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical"
+                            android:text="安徽省  合肥市"
+                            android:textColor="@color/txt_c1"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="horizontal" >
+
+                        <Button
+                            android:id="@+id/goodsInfoUI_buyBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:background="@mipmap/shop_buy" />
+
+                        <Button
+                            android:id="@+id/goodsInfoUI_addCarBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/shop_add_car" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/shop_info_bg"
+                android:orientation="horizontal" />
+
+            <WebView
+                android:id="@+id/goodsInfoUI_webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@color/white"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
