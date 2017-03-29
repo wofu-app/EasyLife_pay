@@ -179,6 +179,7 @@ public class GameDetailFragment extends NoFragment implements View.OnClickListen
                 showPopupWindow(v);
                 break;
             case R.id.gameDetailUI_backBtn:
+                finish();
                 break;
             case R.id.gameDetailUI_okBtn:
                 String QQ = mQQEdit.getText().toString().trim();

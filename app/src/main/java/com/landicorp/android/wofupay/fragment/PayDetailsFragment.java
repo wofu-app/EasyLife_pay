@@ -212,7 +212,7 @@ public class PayDetailsFragment extends NoFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.payDetailsUI_cancelBtn:
-
+                finish();
                 break;
             case R.id.payDetailsUI_completeBtn:
                 queryResult();

@@ -2,6 +2,7 @@ package com.landicorp.android.wofupay.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -23,12 +24,28 @@ public class MainActivity extends CompatActivity implements OnBannerListener{
     private FrameLayout mParentLy;
     private Button mainUI_btn;
 
+    private int screenwidth;
+    private int screenHeight;
+
+    /** 获取屏幕的宽度*/
+    public int getSreenWidth(){
+        return screenwidth;
+    }
+
+    /** 获取屏幕的高度*/
+    public int getSreenHeight(){
+        return screenHeight;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        screenwidth = dm.widthPixels;
+        screenHeight = dm.heightPixels;
     }
 
     private void initView() {
