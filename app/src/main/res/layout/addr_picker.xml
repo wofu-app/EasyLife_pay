@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_light_gray"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/box_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="取  消"
+                android:textColor="@color/red_base"
+                android:textSize="22sp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择所在城市"
+                android:textColor="@color/txt_c3"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/box_btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:textColor="@color/red_base"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="确  定"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.landicorp.android.wofupay.widget.WheelView
+            android:id="@+id/addr_province"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#cccccc"
+            app:lineHeight="1.5dp"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#777"
+            app:normalTextSize="14sp"
+            app:selecredTextColor="#ff000000"
+            app:selecredTextSize="22sp"
+            app:unitHight="50dp" />
+
+        <com.landicorp.android.wofupay.widget.WheelView
+            android:id="@+id/addr_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#cccccc"
+            app:lineHeight="1.5dp"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#777"
+            app:normalTextSize="14sp"
+            app:selecredTextColor="#ff000000"
+            app:selecredTextSize="22sp"
+            app:unitHight="50dp" />
+
+        <com.landicorp.android.wofupay.widget.WheelView
+            android:id="@+id/addr_county"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            app:itemNumber="3"
+            app:lineColor="#cccccc"
+            app:lineHeight="1.5dp"
+            app:maskHight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="#777"
+            app:normalTextSize="14sp"
+            app:selecredTextColor="#ff000000"
+            app:selecredTextSize="22sp"
+            app:unitHight="50dp" />
+    </LinearLayout>
+
+</LinearLayout>
