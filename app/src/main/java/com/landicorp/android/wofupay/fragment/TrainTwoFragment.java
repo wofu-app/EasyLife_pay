@@ -698,17 +698,19 @@ public class TrainTwoFragment extends NoFragment implements View.OnClickListener
             mPidname = result.getString("pidname");
             mPhoneNum = result.getString("mPhoneNum");
         }
+        if (result!=null){
         if (resultCode==RESULT_OK||resultCode==RESULT_CANCELED){
             list.clear();
             List<Passenger> result1 = (List<Passenger>) result.getSerializable("passenger");
             JLog.d("--------",result1.toString());
-            hasVeri = result.getBoolean("hasVeri");
+            hasVeri = result.getBoolean("hasVeri",false);
             if (result1!=null){
                 list.addAll(result1);
             }
             if (mAdapter != null) {
                 mAdapter.notifyDataSetChanged();
             }
+        }
         }
     }
 }

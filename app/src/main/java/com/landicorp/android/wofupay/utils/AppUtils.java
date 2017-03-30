@@ -3,6 +3,7 @@ package com.landicorp.android.wofupay.utils;
 import android.annotation.SuppressLint;
 
 import android.content.Context;
+import android.net.ParseException;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -26,6 +27,7 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -510,5 +512,48 @@ public class AppUtils {
 	public static int dp2px(int dpVal, Context c) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				dpVal, c.getResources().getDisplayMetrics());
+	}
+	/*
+ * 获取指定日期的前一天
+ */
+	public static String getSpecifiedDayBefore(String specifiedDay) {
+		// SimpleDateFormat simpleDateFormat = new
+		// SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		c.setTime(date);
+		int day = c.get(Calendar.DATE);
+		c.set(Calendar.DATE, day - 1);
+
+		String dayBefore = new SimpleDateFormat("yyyy-MM-dd").format(c
+				.getTime());
+		return dayBefore;
+	}
+	/**
+	 * 获得指定日期的后一天
+	 *
+	 * @param specifiedDay
+	 * @return
+	 */
+	public static String getSpecifiedDayAfter(String specifiedDay) {
+		Calendar c = Calendar.getInstance();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		c.setTime(date);
+		int day = c.get(Calendar.DATE);
+		c.set(Calendar.DATE, day + 1);
+
+		String dayAfter = new SimpleDateFormat("yyyy-MM-dd")
+				.format(c.getTime());
+		return dayAfter;
 	}
 }

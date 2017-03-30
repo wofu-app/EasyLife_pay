@@ -1,9 +1,13 @@
 package com.landicorp.android.wofupay.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
@@ -83,4 +87,10 @@ public class MainActivity extends CompatActivity implements OnBannerListener{
         return R.id.fl_content;
     }
 
+    @Override
+    public void onAttachedToWindow() {
+        //TODO 加上这句就直接报错
+     //   this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+        super.onAttachedToWindow();
+    }
 }

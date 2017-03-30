@@ -97,6 +97,7 @@ public class TrainSmsFragment extends NoFragment implements View.OnClickListener
                     RxVolleyHelper helper = new RxVolleyHelper(PayContacts.base_url + "SystemMange/SysServer.ashx");
                     HttpParams params = HttpParams.getInstance();
                     params.put("action", "SMSServer");
+                    //TODO 终端号
                    // params.put("TermNo", DeviceUtils.getDevicePort());
                     params.put("BType", "001");
                     params.put("EndNumber", mNumcode + "");

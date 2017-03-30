@@ -100,11 +100,6 @@ public class FinanceFragment extends NoFragment {
                 }
             }
         });
-//		if (Build.VERSION.SDK_INT > 15) {
-//			wv.loadUrl("http://gongyi.qq.com/");
-//		} else {
-//			wv.loadUrl("http://gongyi.baidu.com/");
-//		}
         wv.loadUrl(mParam1);
     }
 

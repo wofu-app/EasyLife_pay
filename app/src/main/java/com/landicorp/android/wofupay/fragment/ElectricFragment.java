@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.ikidou.fragmentBackHandler.BackHandlerHelper;
 import com.landicorp.android.wofupay.R;
@@ -19,6 +20,7 @@ import com.landicorp.android.wofupay.adapter.AreaAdaptr;
 import com.landicorp.android.wofupay.bean.Areabean;
 import com.landicorp.android.wofupay.bean.ElecPayBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
+import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.RxVolleyHelper;
 import com.yanzhenjie.fragment.NoFragment;
@@ -340,22 +342,26 @@ public class ElectricFragment extends NoFragment implements   AdapterView.OnItem
         HashMap<String, String> params = new HashMap<>();
         params.put("action", "GetBillPayNo");
         params.put("rechargeAccount", mAccount);
+        //TODO 终端号
+        params.put("terminalcode","04962482");
       //  params.put("terminalcode", DeviceUtils.getDevicePort());
         params.put("mobile", mPhone_number);
-        params.put("amount", mAccount + ".0");
+        params.put("amount", mAmount + ".0");
         params.put("BN_type", "elec");
         params.put("BN_memo", "电费");
-        params.put("region", provice+city);
-        params.put("org", dis);
-        Observable<String> observable = helper.postParams(params);
-        observable.subscribe(new Subscriber<String>() {
+        String p = provice.substring(0,provice.length()-1);
+        String c = city.substring(0,city.length()-1);
+        params.put("region", p+c);
+        String d = dis.substring(0,dis.length()-1);
+        params.put("org", d);
+        helper.postParams(params).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-
             }
 
             @Override
             public void onError(Throwable throwable) {
+                Toast.makeText(getContext(),"获取账单失败",Toast.LENGTH_SHORT).show();
 
             }
 
@@ -368,10 +374,37 @@ public class ElectricFragment extends NoFragment implements   AdapterView.OnItem
                 bean.phoneNumber = mPhone_number;
                 bean.cardId = mAccount;
                 bean.type = "1";//电费
-                //进入支付界面
-
+                //TODO 进入支付界面
+                startFragment(PayTypeFragment.newInstance(bean,null,bean.payAmount));
             }
         });
+//        Observable<String> observable = helper.postParams(params);
+//        JLog.d("------------",params.toString());
+//        observable.subscribe(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable throwable) {
+//                Toast.makeText(getContext(),"获取账单失败",Toast.LENGTH_SHORT).show();
+//                JLog.d("----------失败的原因",throwable.toString()+"");
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//                ElecPayBean bean = new ElecPayBean();
+//                bean.BillNo = s;
+//                bean.function = 6;
+//                bean.payAmount = String.valueOf(Integer.parseInt(mAccount)*100);
+//                bean.phoneNumber = mPhone_number;
+//                bean.cardId = mAccount;
+//                bean.type = "1";//电费
+//                //TODO 进入支付界面
+//                startFragment(PayTypeFragment.newInstance(bean,null,bean.payAmount));
+//            }
+//        });
     }
 
     private void initBillNo() {

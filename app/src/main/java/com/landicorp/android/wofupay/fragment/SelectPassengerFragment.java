@@ -73,7 +73,6 @@ public class SelectPassengerFragment extends NoFragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         mInflate = inflater.inflate(R.layout.fragment_select_passenger, null);
-       // Toast.makeText(getContext(),mParam1,Toast.LENGTH_SHORT).show();
         initView();
         initListener();
         return mInflate;

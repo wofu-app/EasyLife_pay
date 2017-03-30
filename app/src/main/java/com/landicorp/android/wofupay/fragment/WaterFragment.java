@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.landicorp.android.wofupay.R;
 import com.landicorp.android.wofupay.bean.ElecPayBean;
@@ -162,6 +163,8 @@ public class WaterFragment extends NoFragment implements View.OnClickListener {
         HashMap<String, String> params = new HashMap<>();
         params.put("action", "GetBillPayNo");
         params.put("rechargeAccount", mAccount);
+        //TODO 终端号
+        params.put("terminalcode","04962482");
        // params.put("terminalcode", DeviceUtils.getDevicePort());
         params.put("mobile", mPhoneNumber);
         params.put("amount", mAccount + ".0");
@@ -179,7 +182,7 @@ public class WaterFragment extends NoFragment implements View.OnClickListener {
 
             @Override
             public void onError(Throwable throwable) {
-
+                Toast.makeText(getContext(),"获取账单失败",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -192,7 +195,8 @@ public class WaterFragment extends NoFragment implements View.OnClickListener {
                 bean.phoneNumber = mPhoneNumber;
                 bean.cardId = mAccount;
                 bean.type = "2"; //水费
-                //进入支付界面
+                //TODO 进入支付界面
+                startFragment(PayTypeFragment.newInstance(bean,null,bean.payAmount));
             }
         });
     }

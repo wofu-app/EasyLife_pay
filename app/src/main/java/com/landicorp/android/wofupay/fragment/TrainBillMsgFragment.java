@@ -105,6 +105,7 @@ public class TrainBillMsgFragment extends NoFragment implements View.OnClickList
                 //TODO
                 //进入付款界面
                 Toast.makeText(getContext(),"进入支付界面",Toast.LENGTH_SHORT).show();
+                startFragment(PayTypeFragment.newInstance(mPaybean,null,mPaybean.payAmount));
                 break;
             case R.id.bill_btn_canel:
                 //取消

@@ -1,6 +1,7 @@
 package com.landicorp.android.wofupay.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -23,6 +25,7 @@ import com.landicorp.android.wofupay.bean.Train_Station;
 import com.landicorp.android.wofupay.bean.TrainsStationsBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
 import com.landicorp.android.wofupay.utils.DefaultThreadPoll;
+import com.landicorp.android.wofupay.utils.DialogUtils;
 import com.landicorp.android.wofupay.utils.JLog;
 import com.landicorp.android.wofupay.utils.PayContacts;
 import com.landicorp.android.wofupay.volley.HttpParams;
@@ -39,6 +42,8 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static android.R.attr.data;
 import static com.landicorp.android.wofupay.R.id.btn_search;
 import static com.landicorp.android.wofupay.R.id.end_city1;
 import static com.landicorp.android.wofupay.R.id.ll_num;
@@ -83,6 +88,7 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
     private String startDate = "";// 出发日期
     String checkStr = "";
     private TrainStationAdapter mAdapter2;
+    private ImageView mIv;
 
     public TrainOneFragment() {
     }
@@ -129,7 +135,7 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
                             Toast.makeText(getContext(),"访问网络获取车站信息",Toast.LENGTH_SHORT).show();
                         }else {
                             //TODO 隐藏提示框
-                            Toast.makeText(getContext(),"车站信息已经存在",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(),"车站信息已经存在",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -335,10 +341,27 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
                 }
                 break;
             case R.id.tv_yesterday://拿到前一天的时间
+                String dayBefore = AppUtils.getSpecifiedDayBefore(startDate);
+                // ToastUtil.showTextToast(Train_One_Activity.this, dayBefore);
+                if (endBean != null && startBean != null) {
+                    serachTrainList(dayBefore);
+                    startDate = dayBefore;
+                    mStart_date1.setText(dayBefore);
+                }
                 break;
             case R.id.tv_toady: //拿到当天的时间
+                if (endBean != null && startBean != null) {
+                    serachTrainList(startDate);
+                }
                 break;
             case R.id.tv_tomorrow: //拿到后一天的时间
+                String dayAfter = AppUtils.getSpecifiedDayAfter(startDate);
+                // ToastUtil.showTextToast(Train_One_Activity.this, dayAfter);
+                if (endBean != null && startBean != null) {
+                    serachTrainList(dayAfter);
+                    startDate = dayAfter;
+                    mStart_date1.setText(dayAfter);
+                }
                 break;
             default:
                 break;
@@ -346,6 +369,8 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
     }
 
     private void serachTrainList(String godata) {
+    //    final DialogUtils utils = DialogUtils.getInstance(getContext());
+    //    final Dialog dialog = new Dialog(getContext());
         RxVolleyHelper helper = new RxVolleyHelper(PayContacts.URL_YIN);
         HttpParams params = HttpParams.getInstance();
         String data = AppUtils.getStringDate("yyyyMMddHHmmss");
@@ -365,19 +390,24 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
         params.put("urltype", PayContacts.YIN);
         params.put("sign", sign);
         JLog.d("===========",params.getParams().toString()+"");
+     //   utils.show("正在查询车次信息");
+     //   dialog.setTitle("正在查询车次信息");
+     //   dialog.show();
         helper.postParams(params.getParams()).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-
+    //           dialog.dismiss();
             }
 
             @Override
             public void onError(Throwable throwable) {
+     //           dialog.dismiss();
                 Toast.makeText(getContext(),"查询车次信息失败请重试",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNext(String s) {
+     //           dialog.dismiss();
                 station = new Gson().fromJson(s,
                         Train_Station.class);
                 JLog.d("---------------","station的集合"+station.toString());
@@ -501,6 +531,7 @@ public class TrainOneFragment extends NoFragment implements View.OnClickListener
                 break;
 
             case R.id.check_else:
+                break;
             case R.id.check_all:
                 check = "";
                 break;

@@ -103,7 +103,7 @@ public class EditPassenegrFragment extends NoFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_cancel:
-                //影藏当前界面
+                //返回前一个界面
                 finish();
                 break;
             case R.id.button_ok:

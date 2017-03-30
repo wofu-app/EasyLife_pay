@@ -99,7 +99,6 @@ public class ShopCarFragment extends NoFragment implements View.OnClickListener,
         mAmountMoney = (TextView) view.findViewById(R.id.shopCarUI_amountMoney);
         mCloseAccBtn = (Button) view.findViewById(R.id.shopCarUI_closeAccBtn);
         mCloseAccBtn.setOnClickListener(this);
-
         mListView = (ListView) view.findViewById(R.id.shopCarUI_listView);
         if (goodsBean != null && goodsBean.size() > 0) {
             mAdapter = new ShopCarAdapter(getActivity(), goodsBean, mAmountMoney);

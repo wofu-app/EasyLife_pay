@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.landicorp.android.wofupay.R;
+import com.landicorp.android.wofupay.bean.FailBean;
 import com.landicorp.android.wofupay.bean.PhoneBean;
 import com.landicorp.android.wofupay.bean.Yin_FlowQueryBean;
 import com.landicorp.android.wofupay.utils.AppUtils;
@@ -396,6 +397,7 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
         Map<String, String> params = new HashMap<String, String>();
         params.put("action", "GetHPBillNo");
         params.put("rechargeAccount", bean.phoneNumber);
+        //TODO 终端号
         // params.put("terminalcode", DeviceUtils.getDevicePort());
         params.put("mobile", bean.phoneNumber);
         params.put("amount", Float.parseFloat(bean.payAmount)/100+"");
@@ -418,6 +420,11 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
             @Override
             public void onError(Throwable throwable) {
                 showMNO("加载失败,请重试!");
+                FailBean bean = new FailBean();
+                bean.errorCode="404";
+                bean.errorMsg="服务器繁忙,请求账单号未完成,请稍后再试";
+                bean.function=3;
+                jumpToFail(bean);
             }
 
             @Override
@@ -427,9 +434,19 @@ public class PhoneRechargeFragment extends NoFragment implements View.OnClickLis
                 bean.function = 3;
                 bean.payData = AppUtils.getStringDate("yyyyMMddHHmmss");
                 JLog.e(bean.toString());
+                //TODO 进入支付界面
                 Toast.makeText(getContext(),bean.toString(),Toast.LENGTH_SHORT).show();
+                jumpTopay(bean,bean.payAmount);
             }
         });
+    }
+
+    private void jumpToFail(FailBean bean) {
+        startFragment(PayTypeFragment.newInstance(null,bean,""));
+    }
+
+    private void jumpTopay(PhoneBean bean, String payAmount) {
+        startFragment(PayTypeFragment.newInstance(bean, null, payAmount));
     }
 
 

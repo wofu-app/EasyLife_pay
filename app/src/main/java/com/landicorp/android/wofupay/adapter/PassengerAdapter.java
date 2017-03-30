@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -98,7 +99,31 @@ public class PassengerAdapter extends BaseAdapter {
                         notifyDataSetChanged();
                     }
                 });
-                builder.create().show();
+                  builder.create().show();
+
+//                final AlertDialog dialog = new AlertDialog.Builder(context).create();
+//                dialog.show();
+//                Window window = dialog.getWindow();
+//                dialog.setTitle("提示");
+//                dialog.setMessage("确定要删除该乘客吗?");
+//                window.setContentView(R.layout.diolog_base);
+//                window.setGravity(Gravity.BOTTOM);
+//                Button cancle = (Button) window.findViewById(R.id.cancelBtn);
+//                Button ok = (Button) window.findViewById(R.id.okBtn);
+//                cancle.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                        notifyDataSetChanged();
+//                    }
+//                });
+//                ok.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        list.remove(position);
+//                        notifyDataSetChanged();
+//                    }
+//                });
             }
 
         });
